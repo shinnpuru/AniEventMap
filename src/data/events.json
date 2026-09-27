@@ -81,6 +81,14 @@
       "bangumiId": 225878,
       "color": "#9c3b3b",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/b5/34/225878_ox8Ax.jpg"
+    },
+    {
+      "id": "omniscient-reader",
+      "name": "全知读者视角",
+      "originalName": "전지적 독자 시점",
+      "bangumiId": 314398,
+      "color": "#3b6f8f",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f9/9d/314398_R0A4x.jpg"
     }
   ],
   "events": [
@@ -629,6 +637,49 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006268",
         "evidence": "会员购 getV2 接口核实活动期（2026-10-02 至 10-03，每日 10:00–18:00）、场馆「泰美术馆」、坐标（GD 坐标系，GCJ-02）、票档与入场规则；海报与横图取自接口 cover / banner。门牌号补全依据嘉定区政府「中国表现2025」展览公告 https://www.jiading.gov.cn/xinwen/jddt1/shxw/content_945884 与上观新闻 https://www.shobserver.cn/sgh/detail?id=1760480 （艺河湾艺术区：上海市嘉定区曹安公路4058号）。作品关联为明日方舟游戏本体（Bangumi subject 225878，非动画或其他衍生）。"
+      }
+    },
+    {
+      "id": "bilibili-1005302",
+      "title": "全知读者视角 × animate cafe",
+      "workIds": ["omniscient-reader"],
+      "type": "快闪",
+      "city": "上海",
+      "district": "静安区",
+      "startDate": "2026-09-19",
+      "endDate": "2026-10-19",
+      "hours": "11:00–21:00",
+      "sessionNote": "11:00 / 13:00 / 15:30 / 17:30 / 19:30，每场90分钟",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "animate cafe上海店",
+      "floor": "8楼",
+      "address": "上海市静安区西藏北路198号大悦城北座8楼N809-1",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.472061,
+        "lat": 31.244157
+      },
+      "price": 30,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202608/k26XHRMm1787811787_1787811787652.jpg",
+      "posterAlt": "上海·「全知读者视角 × animate cafe」海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202608/1Z2Rnifz1787811793_1787811793967.jpg",
+      "description": "「全知读者视角 × animate cafe」联动主题咖啡店，位于 animate cafe 上海店。",
+      "highlights": [],
+      "notes": [
+        "票档：入场券（可抵扣使用）30元；单场票单日 1 次入场有效。",
+        "场次：每日 11:00–12:30、13:00–14:30、15:30–17:00、17:30–19:00、19:30–21:00，每场 90 分钟；营业时间 11:00–21:00。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；1.2 米以下儿童需持全价票入场；每个 ID 限购 8 张。",
+        "票务页面说明不支持 7 天无理由退票，该项目不支持退换。",
+        "活动期以会员购项目标签与 start_time / end_time 为准（2026-09-19 至 10-19）；接口 screen_list 只返回了 09-28 当日场次，未据此缩短活动期。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1005302",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005302",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-09-19 00:00 / end_time 2026-10-19 23:59，Asia/Shanghai）、场馆「animate cafe上海店」、地址与坐标（GD 坐标系，GCJ-02）、票档与入场规则；海报与横图取自接口 cover / banner。screen_list 仅含 09-28 场次，未据此缩短活动期。作品关联为原作小说（Bangumi subject 314398，platform 小说，2018 年开始连载），未使用动画或真人版条目。"
       }
     }
   ]
