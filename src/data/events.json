@@ -98,6 +98,14 @@
       "bangumiId": 26550,
       "color": "#d9455f",
       "cover": "https://lain.bgm.tv/r/200/pic/crt/l/db/c8/26550_crt_BB4vR.jpg"
+    },
+    {
+      "id": "under-one-person",
+      "name": "一人之下",
+      "originalName": "一人之下",
+      "bangumiId": 175459,
+      "color": "#2e8b72",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/81/5a/175459_RAH87.jpg"
     }
   ],
   "events": [
@@ -734,6 +742,51 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006109",
         "evidence": "会员购 getV2 接口核实活动期（start_time 2026-09-23 00:00 / end_time 2027-01-17 23:59，Asia/Shanghai）、场馆、地址与坐标（GD 坐标系，GCJ-02）、预约金与入场规则；海报与横图取自接口 cover / banner。楼层（C馆4楼）与满赠活动经官方微博账号 @Sanriocharacters_Cafe 公示交叉核对：https://www.sina.cn/news/detail/5343493154930981.html 。作品关联为 Bangumi 角色条目 Hello Kitty（character/26550）。"
+      }
+    },
+    {
+      "id": "bilibili-1006196",
+      "title": "《一人之下》十周年漫画原画展 华东首展",
+      "workIds": ["under-one-person"],
+      "type": "展览",
+      "city": "上海",
+      "district": "黄浦区",
+      "startDate": "2026-10-01",
+      "endDate": "2026-11-15",
+      "hours": "10:00–21:00",
+      "sessionNote": "分场次入场 10:00 / 12:00 / 14:00 / 16:00 / 18:00，每场约2小时",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新世界城",
+      "floor": "11楼 · e展空间",
+      "address": "上海市黄浦区南京西路2–68号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.473671,
+        "lat": 31.235113
+      },
+      "price": 78,
+      "priceMax": 108,
+      "priceNote": "",
+      "poster": "https://i0.hdslb.com/bfs/openplatform/202609/jgSKN0L21789551494_1789551494048.png",
+      "posterAlt": "上海·《一人之下》十周年漫画原画展 华东首展海报",
+      "banner": "https://i2.hdslb.com/bfs/openplatform/202609/HJkRmIAL1789551499_1789551499817.png",
+      "description": "上海·《一人之下》十周年漫画原画展 华东首展，展出于上海新世界城 11 楼 e展空间。",
+      "highlights": [],
+      "notes": [
+        "票档：早鸟票78元、特典早鸟票108元。",
+        "分场次入场：10:00–12:00、12:00–14:00、14:00–16:00、16:00–18:00、18:00–21:00；每日入场时间 10:00–20:00，展厅开放 10:00–21:00。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；单场票单场 1 次入场有效；每笔订单限购 6 张。",
+        "免票政策：身高 1 米–1.2 米儿童免票（每位购票成人限带 1 名并须全程陪同）；60 周岁（含）以上凭身份证免票、持有效《中华人民共和国残疾人证》者免票（均需 1 名 18–59 周岁购票成人陪同）；展厅涉及灯光与音效，1 米以下儿童不建议入场。",
+        "票务页面说明不支持 7 天无理由退票，该项目不支持退换。",
+        "坐标沿用同址（上海新世界城 11 楼 e展空间）已有条目已核实的 GCJ-02 坐标以便地图分组；会员购本项目 venue 坐标为 121.473465, 31.235185（同场馆，约 25 米差），未额外转换。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006196",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006196",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-10-01 00:00 / end_time 2026-11-15 23:59，Asia/Shanghai）、场馆「新世界城11楼（e展空间）」、票档、免票政策与入场规则；海报与横图取自接口 cover / banner，海报亦标注「上海·新世界城11F（e展空间）」。坐标沿用同址已有条目的 GCJ-02 坐标以保持分组，会员购 venue 字段为 121.473465, 31.235185。作品关联为原作漫画（Bangumi subject 175459，platform 漫画，作者米二），未使用动画、游戏或真人剧条目。"
       }
     }
   ]
