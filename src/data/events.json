@@ -48,6 +48,22 @@
       "bangumiId": 306788,
       "color": "#d99b48",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/6c/e6/306788_PmNMv.jpg"
+    },
+    {
+      "id": "genshin-impact",
+      "name": "原神",
+      "originalName": "原神",
+      "bangumiId": 284157,
+      "color": "#d3bc8e",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/1a/22/284157_zgv97.jpg"
+    },
+    {
+      "id": "honkai-impact-3",
+      "name": "崩坏3",
+      "originalName": "崩坏3",
+      "bangumiId": 172168,
+      "color": "#6a7fd0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/40/ae/172168_Al7K6.jpg"
     }
   ],
   "events": [
@@ -285,6 +301,85 @@
         "url": "https://show.bilibili.com/platform/detail.html?id=1006228",
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006228"
+      }
+    },
+    {
+      "id": "bilibili-1006027",
+      "title": "原神同人Only · 至冬/挪德卡莱主题同人展",
+      "workIds": ["genshin-impact"],
+      "type": "同人Only",
+      "city": "上海",
+      "district": "闵行区",
+      "startDate": "2026-10-06",
+      "endDate": "2026-10-07",
+      "hours": "10:00–17:00",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "虹桥品汇",
+      "floor": "A栋天空广场",
+      "address": "上海市闵行区申昆路1988号A栋",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.32511913385434,
+        "lat": 31.20805348704049
+      },
+      "price": 128,
+      "priceMax": 398,
+      "priceNote": "",
+      "poster": "https://i1.hdslb.com/bfs/openplatform/202609/MaVVwu2W1789100746_1789100746975.png",
+      "posterAlt": "上海·原神同人Only · 至冬/挪德卡莱主题同人展海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202609/IuAP1HGu1789100756_1789100756183.png",
+      "description": "上海·原神同人Only · 至冬/挪德卡莱主题同人展",
+      "highlights": [],
+      "notes": [
+        "票档：单日普通票128元、单日VIP票228元、双日普通票228元、双日VIP票398元；购买VIP票可提前半小时入场。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；单日多次入场有效，不支持7天无理由退票。",
+        "会员购页面公示的嘉宾为六二二同学、坂坂白、蛋黄mayo_、粽子淞、丝言不吃包子、害羞7、橘kikuko、baka爱、小圆Rabi、梓猫、流萤Zz、呆毛魔王蔓蔓、夏芽yaya、Saya-Scarlet，实际到场以现场为准。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006027",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006027"
+      }
+    },
+    {
+      "id": "honkai3-10th-popup-shanghai",
+      "title": "《崩坏3》「璨星缀途」十周年线下快闪 · 上海站",
+      "workIds": ["honkai-impact-3"],
+      "type": "快闪",
+      "city": "上海",
+      "district": "浦东新区",
+      "startDate": "2026-09-25",
+      "endDate": "2026-10-11",
+      "hours": "10:00–21:00",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海陆家嘴中心L+MALL",
+      "floor": "5F中庭",
+      "address": "上海市浦东新区浦东南路899号",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.5117789,
+        "lat": 31.2333044
+      },
+      "price": 0,
+      "priceNote": "",
+      "poster": "https://mmbiz.qpic.cn/sz_mmbiz_png/6vXXpfMVxaPYMQpJXG4nMSEmxFMgmbZbk8x6PnZd7ibZhDa7tSdXTA0roNy7D1Oa2ryByDTaZabqickat5JhT6dNxgxT9EticL2OZOia1nJZwps/640?wx_fmt=png&from=appmsg",
+      "posterAlt": "《崩坏3》「璨星缀途」十周年线下快闪海报",
+      "banner": "https://i0.hdslb.com/bfs/new_dyn/3b2ea81781039f8738dc61b686db8183256667467.png@1280w.png",
+      "description": "《崩坏3》「璨星缀途」十周年线下快闪三城同启，本站位于上海陆家嘴中心L+MALL 5F中庭。",
+      "highlights": [],
+      "notes": [
+        "免费入场：现场无需门票；9月25日–10月3日参与打卡活动需提前预约，其他日期可直接前往，预约方式见合作方 @KAKACODE 公告。",
+        "打卡规则：关注《崩坏3》与 @KAKACODE 官方账号，拍摄现场打卡照并带 #崩坏3# #崩坏3十周年# #KAKACODE 话题发布，向现场工作人员出示打卡贴文与游戏 UID 后可领取十周年主题明信片 1 张。",
+        "奖品数量有限、先到先得，每人限领一份且不可代领；现场另有十周年周边贩售与满赠活动。"
+      ],
+      "source": {
+        "name": "崩坏3微信公众号",
+        "url": "https://mp.weixin.qq.com/s/-UKDYqMfwF0m52O3sC7Gdg",
+        "verifiedAt": "2026-09-27",
+        "evidence": "微信公众号「崩坏3」公告确认活动期为 2026-09-25 至 2026-10-11、三城点位与点位开放时间 10:00–21:00，地址取自公告长图；官方微博公告 https://www.sina.cn/news/detail/5344962804716591.html 交叉核对。坐标为 OpenStreetMap「陆家嘴中心」（浦东南路899号，WGS84）查询结果，未做二次转换。"
       }
     }
   ]
