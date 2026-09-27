@@ -535,6 +535,49 @@
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006434",
         "evidence": "会员购 getV2 接口核实活动期（start_time 2026-10-24 19:30 / end_time 2026-10-25 21:30，Asia/Shanghai）、场馆地址、票档与入场规则；海报与横图取自接口 cover / banner。作品 A-SOUL 在 Bangumi 为人物（person）条目 https://bgm.tv/person/42445 ，非 subject，bangumiId 记该数字 ID；若前端按 bgm.tv/subject/ 拼接链接需改为人物链接。"
       }
+    },
+    {
+      "id": "bilibili-1005738",
+      "title": "ComicQuest5.0综合同人交流会-第五届动漫艺术创作探索综合展览会",
+      "workIds": [],
+      "type": "展览",
+      "city": "上海",
+      "district": "浦东新区",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-06",
+      "hours": "09:00–17:00",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海世博展览馆",
+      "floor": "H3馆",
+      "address": "上海市浦东新区博成路850号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.48988469032788,
+        "lat": 31.182707965593856
+      },
+      "price": 88,
+      "priceMax": 166,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202609/9MInM0xj1788934481_1788934481926.png",
+      "posterAlt": "上海·ComicQuest5.0综合同人交流会海报",
+      "banner": "https://i2.hdslb.com/bfs/openplatform/202609/0gxLeX9g1788934492_1788934492330.png",
+      "description": "第五届上海 ComicQuest 综合同人交流会（动漫艺术创作探索综合展览会），2026-10-05 至 10-06 在上海世博展览馆举办。",
+      "highlights": [],
+      "notes": [
+        "票档：预售票88元、预售VIP票158元、双日联票166元；VIP票含快速通道、限定礼包、场刊与周边。",
+        "电子票，凭购票二维码到活动现场扫码验证入场（订单或订单截图无效）；单日票当日 2 次入场有效，双日票每日各 2 次入场有效。",
+        "一人一证实名购票，须填写真实身份信息与手机号，购票后不支持更换身份证信息；单个 ID 限购 4 张；14 周岁以下不能入场。",
+        "退票：支持自助退票，退票截止 2026-09-30 12:00，截止前提交申请收取 10% 手续费。",
+        "馆号存在差异：place_info.name 为「1号馆」，活动详情场馆地址为「H3馆」；本条采用活动详情中的 H3馆。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1005738",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005738",
+        "evidence": "会员购 getV2 接口核实活动期（2026-10-05 至 10-06，每日 09:00–17:00）、场馆地址与坐标（会员购 GD 坐标系，GCJ-02）、票档、实名与退票规则；海报与横图取自接口 cover / banner。本活动为综合同人交流会，不针对特定作品，且无 Bangumi 对应作品条目，按维护者确认 workIds 留空。"
+      }
     }
   ]
 }
