@@ -1,8 +1,13 @@
+---
+name: anieventmap-contribute
+description: 按字段核实并填写 AniEventMap 活动数据，通过 Pull Request 新增或修改活动；无需安装开发环境，仅允许修改 src/data/events.json。
+---
+
 # AniEventMap 活动数据投稿
 
 目标仓库：`shinnpuru/AniEventMap`。
 
-这是普通 Markdown 投稿指引，无需安装技能。请让 Agent 显式读取本文件及引用的字段说明；不同框架不一定自动加载 `AGENT.md`。
+可直接让 Agent 读取本文件及引用的字段说明，无需安装项目开发环境。不同框架不一定自动加载此文件。
 
 - 功能建议通过 Issue 提交。
 - 新增或修改活动通过 PR 提交。

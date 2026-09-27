@@ -112,4 +112,4 @@ source 必须是对象，至少包含 name、url、verifiedAt。图片以 // 开
 - 提交前逐项检查必填字段、合法 JSON、唯一 ID、作品关联、日期区间、坐标系、价格单位及来源。不要修改未核实活动的 verifiedAt。
 - 无需安装环境或执行命令；PR 的 GitHub Actions 自动测试和构建。检查失败时只修正 src/data/events.json，不能修改校验规则、测试或其他文件。
 
-具体分支或 Fork、PR 提交流程见 [AGENT.md](../AGENT.md)。
+具体分支或 Fork、PR 提交流程见 [SKILL.md](../SKILL.md)。

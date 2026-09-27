@@ -29,7 +29,7 @@ git diff --check
 
 技术栈为 React、TypeScript、Vite、MapLibre GL JS、Zod 和 Vitest。版本以 package.json 和锁文件为准。
 
-数据维护见 [活动数据文档](docs/ACTIVITY_DATA.md)，Agent 投稿见 [AGENT.md](AGENT.md)。新增类别需同步更新数据枚举和界面筛选，并检查窄屏布局；只新增活动无需修改界面。
+数据维护见 [活动数据文档](docs/ACTIVITY_DATA.md)，Agent 投稿见 [SKILL.md](SKILL.md)。新增类别需同步更新数据枚举和界面筛选，并检查窄屏布局；只新增活动无需修改界面。
 
 ## 约定
 

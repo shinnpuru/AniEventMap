@@ -19,6 +19,6 @@
 - 功能建议：提交 [Issue](https://github.com/shinnpuru/AniEventMap/issues)。
 - 新增或修改活动：提交 [Pull Request](https://github.com/shinnpuru/AniEventMap/pulls)。
 
-[让你的 Agent 提交活动：AGENT.md](AGENT.md)
+[让你的 Agent 提交活动：SKILL.md](SKILL.md)
 
 地图数据来自 OpenStreetMap，海报及作品版权归原权利人。
