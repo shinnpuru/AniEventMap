@@ -393,6 +393,52 @@
         "verifiedAt": "2026-09-27",
         "evidence": "微信公众号「崩坏3」公告确认活动期为 2026-09-25 至 2026-10-11、三城点位与点位开放时间 10:00–21:00，地址取自公告长图；官方微博公告 https://www.sina.cn/news/detail/5344962804716591.html 交叉核对。坐标为 OpenStreetMap「陆家嘴中心」（浦东南路899号，WGS84）查询结果，未做二次转换。"
       }
+    },
+    {
+      "id": "bilibili-1004973",
+      "title": "Wonder Festival 2026上海",
+      "workIds": [],
+      "type": "展览",
+      "city": "上海",
+      "district": "浦东新区",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-04",
+      "hours": "08:30–17:00",
+      "sessionNote": "每日16:00停止检票入场",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新国际博览中心",
+      "floor": "W5-W1馆",
+      "address": "上海市浦东新区龙阳路2345号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.568028,
+        "lat": 31.210212
+      },
+      "price": 120,
+      "priceMax": 580,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202608/jVGQKC1P1788161192_1788161192919.png",
+      "posterAlt": "Wonder Festival 2026上海海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202608/RLh6ttIP1788161198_1788161198098.png",
+      "description": "上海·Wonder Festival 2026上海（综合手办模型展）。",
+      "highlights": [],
+      "notes": [
+        "票档：普通票120元、VIP票580元；核验时会员购显示已售罄，两日 VIP 票分别于 2026-09-16、2026-09-21 停止售票。售罄不等于取消，本条按正常安排记录。",
+        "实名制电子票：凭购票时登记的本人有效身份证件扫证入场，入场时采集人像面部信息并需与所持证件一致；单日 1 次入场有效，不可重复入场。",
+        "14 周岁以上可购票；14 周岁至未满 18 周岁的购票者需在 10月2日 24:00 前在线签署《未成年人入场安全承诺书》，未完成签署不得入场。",
+        "每个场次单个 UID 限购 4 张；一人一证，购票后不支持更换身份证件信息。",
+        "退票：支持自助退票，退票截止 2026-09-21 0点；2026-09-16 12点前免手续费，其后至 09-20 23:59 收取 50% 手续费。",
+        "馆号存在差异：place_info.name 为 E1-E4，活动详情场馆地址为 W5-W1馆；本条采用活动详情中的 W5-W1馆。",
+        "限定品抢先购需先购买对应日期门票，同一 B 站账号仅有一次购买资格，各品牌实名要求以其官方公示为准。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1004973",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1004973",
+        "evidence": "会员购 getV2 接口核实活动期（2026-10-03 至 2026-10-04，每日 08:30–17:00、16:00 停止检票）、场馆地址、坐标（GD 坐标系，GCJ-02）、票档与实名入场规则；海报与横图取自接口 cover / banner。本活动为多 IP 综合手办模型展，Bangumi 无 Wonder Festival 条目（subject / person 搜索均为空），经维护者确认 workIds 允许为空，故本条不关联作品。"
+      }
     }
   ]
 }
