@@ -64,6 +64,15 @@
       "bangumiId": 172168,
       "color": "#6a7fd0",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/40/ae/172168_Al7K6.jpg"
+    },
+    {
+      "id": "a-soul",
+      "name": "A-SOUL",
+      "originalName": "A-Soul",
+      "bangumiType": "person",
+      "bangumiId": 42445,
+      "color": "#8a5cd6",
+      "cover": "https://lain.bgm.tv/r/200/pic/crt/l/a1/63/42445_prsn_4nvv5.jpg"
     }
   ],
   "events": [
@@ -435,6 +444,96 @@
         "url": "https://detail.damai.cn/item.htm?id=1074332229992",
         "verifiedAt": "2026-09-27",
         "evidence": "大麦详情页静态数据（itemBase / venue / noticeMatter / returnPolicy）核实活动期 2026-10-02 至 10-06、场馆「复兴岛船台PARK」（杨浦区共青路130号）、价格区间 ¥99、限购、实名与退票规则；场馆坐标 lng 121.562466 / lat 31.280088 来自大麦 venue 字段，与 OpenStreetMap 复兴岛位置（约 31.2830, 121.5570）比对符合 GCJ-02 偏移，按来源记 GCJ-02 未做转换。活动内容（100+ IP、三大主题区、10万+㎡、日夜漫展夜场）与固定时段取自大麦项目介绍长图（官方物料），并与报道 https://article.pchome.net/news/15553.html 交叉核对。本活动为多 IP 综合展，Bangumi 无对应作品条目，按维护者确认 workIds 允许为空。"
+      }
+    },
+    {
+      "id": "bilibili-1004973",
+      "title": "Wonder Festival 2026上海",
+      "workIds": [],
+      "type": "展览",
+      "city": "上海",
+      "district": "浦东新区",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-04",
+      "hours": "08:30–17:00",
+      "sessionNote": "每日16:00停止检票入场",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新国际博览中心",
+      "floor": "W5-W1馆",
+      "address": "上海市浦东新区龙阳路2345号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.568028,
+        "lat": 31.210212
+      },
+      "price": 120,
+      "priceMax": 580,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202608/jVGQKC1P1788161192_1788161192919.png",
+      "posterAlt": "Wonder Festival 2026上海海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202608/RLh6ttIP1788161198_1788161198098.png",
+      "description": "上海·Wonder Festival 2026上海（综合手办模型展）。",
+      "highlights": [],
+      "notes": [
+        "票档：普通票120元、VIP票580元；核验时会员购显示已售罄，两日 VIP 票分别于 2026-09-16、2026-09-21 停止售票。售罄不等于取消，本条按正常安排记录。",
+        "实名制电子票：凭购票时登记的本人有效身份证件扫证入场，入场时采集人像面部信息并需与所持证件一致；单日 1 次入场有效，不可重复入场。",
+        "14 周岁以上可购票；14 周岁至未满 18 周岁的购票者需在 10月2日 24:00 前在线签署《未成年人入场安全承诺书》，未完成签署不得入场。",
+        "每个场次单个 UID 限购 4 张；一人一证，购票后不支持更换身份证件信息。",
+        "退票：支持自助退票，退票截止 2026-09-21 0点；2026-09-16 12点前免手续费，其后至 09-20 23:59 收取 50% 手续费。",
+        "馆号存在差异：place_info.name 为 E1-E4，活动详情场馆地址为 W5-W1馆；本条采用活动详情中的 W5-W1馆。",
+        "限定品抢先购需先购买对应日期门票，同一 B 站账号仅有一次购买资格，各品牌实名要求以其官方公示为准。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1004973",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1004973",
+        "evidence": "会员购 getV2 接口核实活动期（2026-10-03 至 2026-10-04，每日 08:30–17:00、16:00 停止检票）、场馆地址、坐标（GD 坐标系，GCJ-02）、票档与实名入场规则；海报与横图取自接口 cover / banner。本活动为多 IP 综合手办模型展，Bangumi 无 Wonder Festival 条目（subject / person 搜索均为空），经维护者确认 workIds 允许为空，故本条不关联作品。"
+      }
+    },
+    {
+      "id": "bilibili-1006434",
+      "title": "A-SOUL此间共鸣线下演唱会",
+      "workIds": ["a-soul"],
+      "type": "演出",
+      "city": "上海",
+      "district": "徐汇区",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "hours": "每天 19:30–21:30",
+      "sessionNote": "两日各一场 · 19:30 开演 · 约120分钟",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "LIVERSE音宇宙（上海）",
+      "floor": "",
+      "address": "上海市徐汇区叠彩路133号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.41421648579342,
+        "lat": 31.16737089948113
+      },
+      "price": 388,
+      "priceMax": 1888,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202609/k3tYzq781790234676_1790234676045.jpg",
+      "posterAlt": "A-SOUL此间共鸣线下演唱会海报",
+      "banner": "https://i1.hdslb.com/bfs/openplatform/202609/EAaKsPae1790234687_1790234687946.jpg",
+      "description": "上海·A-SOUL此间共鸣线下演唱会",
+      "highlights": [],
+      "notes": [
+        "票档：普通票388元、VIP票888元、SVIP票1888元，两日票价相同。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；非选座项目，一对一座位，有序对号入座。",
+        "一人一证实名购票，须填写真实身份信息与手机号，购票后不支持更换身份证信息；每个 UID 限购 4 张；1.2米以下儿童谢绝入场。",
+        "核验时会员购页面显示未开售，开售时间为 2026-09-29 12:00；不支持7天无理由退票。",
+        "海报标注场地为「LIVERSE音宇宙艺术中心」，会员购场馆名为「LIVERSE音宇宙（上海）」，本条采用票务平台名称。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006434",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006434",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-10-24 19:30 / end_time 2026-10-25 21:30，Asia/Shanghai）、场馆地址、票档与入场规则；海报与横图取自接口 cover / banner。作品 A-SOUL 在 Bangumi 为人物（person）条目 https://bgm.tv/person/42445 ，非 subject，bangumiId 记该数字 ID；若前端按 bgm.tv/subject/ 拼接链接需改为人物链接。"
       }
     }
   ]
