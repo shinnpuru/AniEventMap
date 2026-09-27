@@ -1710,3 +1710,106 @@ h1 span {
 .all-works:hover {
   color: var(--green);
 }
+.map-controls {
+  z-index: 2;
+}
+.map-controls button[aria-expanded="true"] {
+  background: #e4eedf;
+  color: var(--green);
+}
+.map-appearance {
+  position: absolute;
+  z-index: 3;
+  top: 202px;
+  right: 16px;
+  width: 244px;
+  max-width: calc(100% - 32px);
+  max-height: calc(100dvh - 218px);
+  overflow: auto;
+  padding: 14px;
+  background: #fffefa;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px #24463425;
+}
+.appearance-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.appearance-heading button {
+  padding: 4px;
+  display: flex;
+}
+.map-appearance fieldset {
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.map-appearance legend {
+  font-size: 11px;
+  color: #71816c;
+  margin-bottom: 8px;
+}
+.appearance-options {
+  display: flex;
+  gap: 6px;
+}
+.appearance-options button {
+  flex: 1;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 12px;
+}
+.appearance-options button[aria-pressed="true"] {
+  border-color: var(--green);
+  color: var(--green);
+  background: #edf3e8;
+}
+.density-compact .event-pin {
+  width: 40px;
+  height: 52px;
+  border-width: 3px;
+  border-radius: 9px 9px 9px 3px;
+}
+.density-compact .event-pin:after {
+  left: 10px;
+}
+.density-compact .event-pin > span {
+  display: none;
+  bottom: 60px;
+  max-width: 220px;
+  white-space: normal;
+}
+.density-compact .event-pin:hover > span,
+.density-compact .event-pin:focus-visible > span {
+  display: block;
+}
+.density-compact .venue-pin:not([open]) .venue-name {
+  display: none;
+}
+.density-compact .venue-pin > summary {
+  padding: 9px;
+}
+.density-standard .event-pin > span {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.density-detailed .event-pin > span {
+  width: max-content;
+  max-width: 250px;
+  white-space: normal;
+  line-height: 1.6;
+}
+@media (max-height: 440px) {
+  .map-appearance {
+    top: 16px;
+    right: 70px;
+    max-height: calc(100dvh - 32px);
+    max-width: calc(100% - 86px);
+  }
+}

@@ -1,8 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { LocateFixed, Minus, Plus } from "lucide-react";
+import { LocateFixed, Minus, Plus, SlidersHorizontal, X } from "lucide-react";
 import { mapCoordinates, groupByVenue, type EventInfo } from "./data";
+const themes = {
+  original: { name: "原色", saturation: 0, contrast: 0 },
+  soft: { name: "柔和", saturation: -0.45, contrast: -0.08 },
+  vivid: { name: "鲜明", saturation: 0.25, contrast: 0.08 },
+};
+const densities = { compact: "简洁", standard: "标准", detailed: "详细" };
+type Appearance = {
+  theme: keyof typeof themes;
+  density: keyof typeof densities;
+};
+function readAppearance(): Appearance {
+  try {
+    const value = JSON.parse(
+      localStorage.getItem("anievent:map-appearance") || "null",
+    );
+    return {
+      theme:
+        value && Object.hasOwn(themes, value.theme) ? value.theme : "original",
+      density:
+        value && Object.hasOwn(densities, value.density)
+          ? value.density
+          : "standard",
+    };
+  } catch {
+    return { theme: "original", density: "standard" };
+  }
+}
 export default function MapView({
   events,
   onSelect,
@@ -21,6 +48,46 @@ export default function MapView({
     markers = useRef<maplibregl.Marker[]>([]);
   const [ready, setReady] = useState(false),
     [failed, setFailed] = useState(false);
+  const [appearance, setAppearance] = useState(readAppearance);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const settings = useRef<HTMLDivElement>(null);
+  const settingsButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        "anievent:map-appearance",
+        JSON.stringify(appearance),
+      );
+    } catch {
+      /* Session settings still work when storage is unavailable. */
+    }
+    if (!ready || !map.current?.getLayer("base")) return;
+    const theme = themes[appearance.theme];
+    map.current.setPaintProperty("base", "raster-saturation", theme.saturation);
+    map.current.setPaintProperty("base", "raster-contrast", theme.contrast);
+  }, [appearance, ready]);
+  useEffect(() => {
+    if (!settingsOpen) return;
+    const dismiss = (event: PointerEvent) => {
+      if (
+        !settings.current?.contains(event.target as Node) &&
+        !settingsButton.current?.contains(event.target as Node)
+      )
+        setSettingsOpen(false);
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSettingsOpen(false);
+        settingsButton.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", escape);
+    };
+  }, [settingsOpen]);
   const select = useRef(onSelect);
   select.current = onSelect;
   const currentEvents = useRef(events);
@@ -66,7 +133,10 @@ export default function MapView({
               id: "base",
               type: "raster",
               source: "osm",
-              paint: { "raster-saturation": -0.65, "raster-contrast": -0.08 },
+              paint: {
+                "raster-saturation": themes[appearance.theme].saturation,
+                "raster-contrast": themes[appearance.theme].contrast,
+              },
             },
           ],
         },
@@ -120,7 +190,14 @@ export default function MapView({
             });
         };
         const heading = document.createElement("summary");
-        heading.textContent = `${e.venue} · ${group.length} 场活动`;
+        heading.setAttribute(
+          "aria-label",
+          `${e.venue} · ${group.length} 场活动`,
+        );
+        const venue = document.createElement("span");
+        venue.className = "venue-name";
+        venue.textContent = `${e.venue} · `;
+        heading.append(venue, `${group.length} 场活动`);
         container.append(heading);
         const list = document.createElement("div");
         list.className = "venue-events";
@@ -176,7 +253,11 @@ export default function MapView({
   }, [focusToken, focusId, events]);
   return (
     <>
-      <div ref={container} className="map-canvas" aria-label="活动地图" />
+      <div
+        ref={container}
+        className={`map-canvas density-${appearance.density}`}
+        aria-label="活动地图"
+      />
       {failed && (
         <div className="map-error" role="status">
           底图暂时无法加载，活动列表仍可浏览。
@@ -204,7 +285,68 @@ export default function MapView({
         <button aria-label="显示全部活动" onClick={fitEvents}>
           <LocateFixed size={19} />
         </button>
+        <button
+          ref={settingsButton}
+          aria-label="地图外观"
+          aria-expanded={settingsOpen}
+          aria-controls="map-appearance"
+          onClick={() => setSettingsOpen(!settingsOpen)}
+        >
+          <SlidersHorizontal size={19} />
+        </button>
       </div>
+      {settingsOpen && (
+        <div
+          ref={settings}
+          id="map-appearance"
+          className="map-appearance"
+          role="region"
+          aria-label="地图外观设置"
+        >
+          <div className="appearance-heading">
+            <strong>地图外观</strong>
+            <button
+              aria-label="关闭地图外观"
+              onClick={() => {
+                setSettingsOpen(false);
+                settingsButton.current?.focus();
+              }}
+            >
+              <X size={16} />
+            </button>
+          </div>
+          <fieldset>
+            <legend>底图主题</legend>
+            <div className="appearance-options">
+              {(Object.keys(themes) as Appearance["theme"][]).map((theme) => (
+                <button
+                  key={theme}
+                  aria-pressed={appearance.theme === theme}
+                  onClick={() => setAppearance({ ...appearance, theme })}
+                >
+                  {themes[theme].name}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>活动标记密度</legend>
+            <div className="appearance-options">
+              {(Object.keys(densities) as Appearance["density"][]).map(
+                (density) => (
+                  <button
+                    key={density}
+                    aria-pressed={appearance.density === density}
+                    onClick={() => setAppearance({ ...appearance, density })}
+                  >
+                    {densities[density]}
+                  </button>
+                ),
+              )}
+            </div>
+          </fieldset>
+        </div>
+      )}
     </>
   );
 }
