@@ -106,6 +106,14 @@
       "bangumiId": 175459,
       "color": "#2e8b72",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/81/5a/175459_RAH87.jpg"
+    },
+    {
+      "id": "chiikawa",
+      "name": "吉伊卡哇",
+      "originalName": "ちいかわ なんか小さくてかわいいやつ",
+      "bangumiId": 359101,
+      "color": "#ee8fb0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/5b/4f/359101_um1ru.jpg"
     }
   ],
   "events": [
@@ -787,6 +795,50 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006196",
         "evidence": "会员购 getV2 接口核实活动期（start_time 2026-10-01 00:00 / end_time 2026-11-15 23:59，Asia/Shanghai）、场馆「新世界城11楼（e展空间）」、票档、免票政策与入场规则；海报与横图取自接口 cover / banner，海报亦标注「上海·新世界城11F（e展空间）」。坐标沿用同址已有条目的 GCJ-02 坐标以保持分组，会员购 venue 字段为 121.473465, 31.235185。作品关联为原作漫画（Bangumi subject 175459，platform 漫画，作者米二），未使用动画、游戏或真人剧条目。"
+      }
+    },
+    {
+      "id": "chiikawa-days-shanghai",
+      "title": "CHIIKAWA DAYS特展 上海站",
+      "workIds": ["chiikawa"],
+      "type": "展览",
+      "city": "上海",
+      "district": "静安区",
+      "startDate": "2026-09-12",
+      "endDate": "2026-11-01",
+      "hours": "10:00–22:00",
+      "sessionNote": "收费展区 21:00 最后入场",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "静安嘉里中心（JAKC）",
+      "floor": "南区商场（收费展区A/B）",
+      "address": "上海市静安区南京西路1515号",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.4445924,
+        "lat": 31.2258707
+      },
+      "price": 115,
+      "priceMax": 390,
+      "priceNote": "",
+      "poster": "https://sghimages.shobserver.cn/img/sgh/20260901/P2xITxuAg2/287f63ce803e44399be8671581e2bed2.jpg",
+      "posterAlt": "CHIIKAWA DAYS上海站「吉伊卡哇弄堂风味」海报",
+      "banner": "https://sghimages.shobserver.cn/img/sgh/20260901/r0txmwOUeR/3cd676165aaa4d9ba112753f08ee8ef2.jpg",
+      "description": "CHIIKAWA DAYS 中国内地首展（上海站）：两个收费展区、免费展区与限时快闪店，围绕漫画中的「衣、食、住、行」打造沉浸式空间，并有上海定制「吉伊卡哇弄堂风味」展品。",
+      "highlights": [],
+      "notes": [
+        "票档（2026-09-27 核实的正价）：一般门票成人 工作日145元、周末及节假日170元；儿童 工作日115元、周末及节假日130元；特典套装390元（含收费展区门票、快闪店当日进店资格、角色名牌挂件套装与发光讨伐棒）。早鸟优惠（9月5日–13日，低至8折）现已结束。",
+        "每张门票含两个收费展区的进入资格与快闪店当日单次进店购物资格；收费展区每日 10:00–22:00 开放，21:00 最后入场。",
+        "展区分布：收费展区A「吉伊卡哇的可爱全日常」与收费展区B「服装造型集合」位于静安嘉里中心南区商场；免费展区（9 米巨型充气雕塑）在南京西路×常德路街角；限时快闪店在静安嘉里中心北区 2 楼，仅持票顾客可进。",
+        "展览内容：逾百座 1:1 等身立体雕塑与九大主题房间，以及上海定制的「吉伊卡哇弄堂风味」展区与「中秋灯会」限定周边。",
+        "购票渠道：官方说明门票于猫眼平台发售（9月5日 14:00 开售）；本条 source 暂以官方公告作为来源页，补充到猫眼详情页链接后可直接替换。",
+        "坐标说明：采用 OpenStreetMap「静安嘉里中心（南京西路1515号）」的 WGS84 坐标 121.4445924, 31.2258707；该址无会员购/大麦坐标可复用，未做坐标转换。"
+      ],
+      "source": {
+        "name": "上海静安（官方微信）",
+        "url": "https://www.jfdaily.com/sgh/detail?id=4048759",
+        "verifiedAt": "2026-09-27",
+        "evidence": "活动期（2026-09-12 至 11-01）、场馆（静安嘉里中心 JAKC）、展区分布、快闪店与购票渠道经上海静安官方微信公告核实（上观新闻转载 https://www.jfdaily.com/sgh/detail?id=4048759 ）；地址与每日开放时间经上海市人民政府英文网活动页核对 https://english.shanghai.gov.cn/en-LatestEvents/20260920/1f01a9130a114aa8905aa4f3cbcd51eb.html （Jing An Kerry Centre, No 1515 West Nanjing Road, 10 am–10 pm, Source: WeChat account of Jing'an district government）；票档与早鸟安排依据猫眼售票信息汇总 https://sh.bendibao.com/xiuxian/2026831/308854.shtm 。海报与横图取自官方公告配图（©nagano），已验证无 Referer 与带外站 Referer 时均返回 200。坐标为 OpenStreetMap 静安嘉里中心 WGS84。"
       }
     }
   ]
