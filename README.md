@@ -2,7 +2,7 @@
 
 按地区、作品和日期查找二次元展览、快闪、演出和同人Only。当前从上海开始，持续扩展其他地区。
 
-**[打开活动地图](https://shinnpuru.github.io/AniEventMap/)**
+**[打开活动地图](https://map.shinnpuru.site/)**
 
 ## 使用
 

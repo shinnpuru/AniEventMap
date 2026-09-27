@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-本地地址：http://127.0.0.1:5173/AniEventMap/ 。验证：
+本地地址：http://127.0.0.1:5173/ 。验证：
 
 ```sh
 npm test
@@ -54,4 +54,4 @@ VITE_* 会进入公开前端产物，不能存放私密凭证。遵循 [OSM 瓦�
 
 仓库 Settings → Pages → Source 选择 GitHub Actions。PR 运行测试和构建；合并到 main 后才部署 Pages。贡献者通过 PR 投稿，不直接推送主分支。
 
-Vite base 为 `/AniEventMap/`，更换部署路径时同步调整。不要提交 dist、node_modules、本地抓取文件或凭证。
+自定义域名为 `map.shinnpuru.site`，Vite base 为 `/`。`public/CNAME` 在构建时自动复制到 `dist/CNAME`，随 Pages 产物一起上传。更换域名时同步更新此文件、仓库 Pages 自定义域名设置及 DNS；CNAME 文件本身不会配置 DNS。不要提交 dist、node_modules、本地抓取文件或凭证。
