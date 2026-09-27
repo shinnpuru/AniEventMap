@@ -21,6 +21,13 @@
       "originalName": "Undertale",
       "bangumiId": 147713,
       "color": "#bf303c"
+    },
+    {
+      "id": "bang-dream-girls-band-party",
+      "name": "BanG Dream! 少女乐团派对！",
+      "originalName": "バンドリ！ ガールズバンドパーティ！",
+      "bangumiId": 208415,
+      "color": "#de548e"
     }
   ],
   "events": [
@@ -143,6 +150,44 @@
         "url": "https://detail.damai.cn/item.htm?id=1072650157253",
         "verifiedAt": "2026-09-27",
         "evidence": "大麦详情页的四场演出时间、票价、场馆、时长及海报；主办方公告 https://www.sina.cn/news/detail/5331135443503326.html 交叉核对；地图坐标来自高德 https://www.amap.com/place/B0FFKBUMWT 。"
+      }
+    },
+    {
+      "id": "bilibili-1005699",
+      "title": "BanG Dream!少女乐团派对! × 暹罗猫小豆泥 联动主题快闪",
+      "workIds": ["bang-dream-girls-band-party"],
+      "type": "快闪",
+      "city": "上海",
+      "district": "黄浦区",
+      "startDate": "2026-09-26",
+      "endDate": "2026-10-18",
+      "hours": "10:00–21:30",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新世界城",
+      "floor": "4楼",
+      "address": "上海市黄浦区南京西路2–68号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.473671,
+        "lat": 31.235113
+      },
+      "price": 0,
+      "priceNote": "",
+      "poster": "https://i1.hdslb.com/bfs/openplatform/202609/2Y91WL0V1788488357_1788488357728.jpg",
+      "posterAlt": "BanG Dream! × 暹罗猫小豆泥联动主题快闪海报",
+      "banner": "https://i1.hdslb.com/bfs/openplatform/202609/qcfPCD5f1788488363_1788488363379.jpg",
+      "description": "BanG Dream!少女乐团派对!与暹罗猫小豆泥联动主题快闪。",
+      "highlights": [],
+      "notes": [
+        "来源楼层存在差异：place_info.name 为11楼，活动详情 base_info 场馆地址为4楼；本条采用活动详情中的4楼。",
+        "核验时预约场次为10:00–18:00，18:00–21:30场次标注无需预约、可直接到店。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1005699",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005699"
       }
     }
   ]

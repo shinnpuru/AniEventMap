@@ -324,8 +324,14 @@ export default function App() {
                           {eventStatus(e, today)}
                         </span>
                         <span className="price">
-                          ¥<b>{e.price}</b>
-                          <small>{e.priceMax ? " 起" : " / 人"}</small>
+                          {e.price === 0 ? (
+                            "免费"
+                          ) : (
+                            <>
+                              ¥<b>{e.price}</b>
+                              <small>{e.priceMax ? " 起" : " / 人"}</small>
+                            </>
+                          )}
                         </span>
                       </div>
                     </div>
@@ -459,8 +465,9 @@ export default function App() {
                   <Ticket />
                   <p>
                     <strong>
-                      ¥{event.price}
-                      {event.priceMax ? `–${event.priceMax}` : " / 人"}
+                      {event.price === 0
+                        ? "免费"
+                        : `¥${event.price}${event.priceMax ? `–${event.priceMax}` : " / 人"}`}
                     </strong>
                   </p>
                 </div>
@@ -479,7 +486,8 @@ export default function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  查看场次与购票 <ArrowUpRight size={17} />
+                  {event.price === 0 ? "查看场次与预约" : "查看场次与购票"}{" "}
+                  <ArrowUpRight size={17} />
                 </a>
                 <button
                   className={favorites.includes(event.id) ? "saved" : ""}
