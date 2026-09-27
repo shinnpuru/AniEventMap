@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   dataset,
+  eventSchema,
   eventStatus,
   dateMatches,
   mapCoordinates,
@@ -12,6 +13,28 @@ import {
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("缺省国家和省份为中国上海，显式地区保持原值", () => {
+    const { country, province, ...legacy } = e;
+    const parsed = eventSchema.parse(legacy);
+    expect(parsed.country).toBe("中国");
+    expect(parsed.province).toBe("上海");
+    expect(eventSchema.parse({ ...legacy, province: "浙江" }).country).toBe(
+      "中国",
+    );
+    const explicit = eventSchema.parse({
+      ...legacy,
+      country: "日本",
+      province: "东京都",
+    });
+    expect(explicit.country).toBe("日本");
+    expect(explicit.province).toBe("东京都");
+    expect(eventSchema.safeParse({ ...legacy, country: " " }).success).toBe(
+      false,
+    );
+    expect(eventSchema.safeParse({ ...legacy, province: null }).success).toBe(
+      false,
+    );
+  });
   it("最近七天包含今天及后六天的在展活动，支持跨年", () => {
     const today = "2026-12-29";
     const matches = (startDate: string, endDate: string) =>
