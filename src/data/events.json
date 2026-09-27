@@ -73,6 +73,14 @@
       "bangumiId": 42445,
       "color": "#8a5cd6",
       "cover": "https://lain.bgm.tv/r/200/pic/crt/l/a1/63/42445_prsn_4nvv5.jpg"
+    },
+    {
+      "id": "arknights",
+      "name": "明日方舟",
+      "originalName": "明日方舟",
+      "bangumiId": 225878,
+      "color": "#9c3b3b",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/b5/34/225878_ox8Ax.jpg"
     }
   ],
   "events": [
@@ -577,6 +585,50 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005738",
         "evidence": "会员购 getV2 接口核实活动期（2026-10-05 至 10-06，每日 09:00–17:00）、场馆地址与坐标（会员购 GD 坐标系，GCJ-02）、票档、实名与退票规则；海报与横图取自接口 cover / banner。本活动为综合同人交流会，不针对特定作品，且无 Bangumi 对应作品条目，按维护者确认 workIds 留空。"
+      }
+    },
+    {
+      "id": "bilibili-1006268",
+      "title": "第六届明日方舟Only同人——深夜离狱者",
+      "workIds": ["arknights"],
+      "type": "同人Only",
+      "city": "上海",
+      "district": "嘉定区",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-03",
+      "hours": "10:00–18:00",
+      "sessionNote": "VIP票 10:00 入场 · 普通票 10:30 入场",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "泰美术馆",
+      "floor": "",
+      "address": "上海市嘉定区曹安公路4058号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.26624631150926,
+        "lat": 31.275845677680213
+      },
+      "price": 89,
+      "priceMax": 138,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202609/bo0y9Gfa1789713946_1789713946016.png",
+      "posterAlt": "上海·第六届明日方舟Only同人——深夜离狱者海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202609/O1UvKcRi1789713939_1789713939570.png",
+      "description": "上海·第六届明日方舟Only同人——深夜离狱者（SHANGHAI ARKNIGHTS ONLY）。",
+      "highlights": [],
+      "notes": [
+        "票档：普通游客票（「犯了点事」）89元、VIP票（「喂，我可是塞了钱的」）138元；VIP 票 10:00 入场，普通票 10:30 入场。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；单场票单日 1 次入场有效；全部儿童需持全价票入场。",
+        "票务页面说明不支持 7 天无理由退票，该项目不支持退换。",
+        "来宾：花崎Makura、菌烨tako、v汐小豹v、小鬼卡比、小侦探莉莉西（会员购 guests 字段），实际到场以现场为准。",
+        "地址说明：会员购 address 字段仅给出「曹安公路」，门牌号按嘉定区政府展览公告与上观新闻报道补全为「曹安公路4058号」（艺河湾艺术区，泰美术馆位于园区内）；场馆坐标仍采用会员购 venue 字段。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006268",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006268",
+        "evidence": "会员购 getV2 接口核实活动期（2026-10-02 至 10-03，每日 10:00–18:00）、场馆「泰美术馆」、坐标（GD 坐标系，GCJ-02）、票档与入场规则；海报与横图取自接口 cover / banner。门牌号补全依据嘉定区政府「中国表现2025」展览公告 https://www.jiading.gov.cn/xinwen/jddt1/shxw/content_945884 与上观新闻 https://www.shobserver.cn/sgh/detail?id=1760480 （艺河湾艺术区：上海市嘉定区曹安公路4058号）。作品关联为明日方舟游戏本体（Bangumi subject 225878，非动画或其他衍生）。"
       }
     }
   ]
