@@ -162,6 +162,15 @@
       "bangumiId": 117206,
       "color": "#cf5f2f",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/c9/a1/117206_G7dmC.jpg"
+    },
+    {
+      "id": "hatsune-miku",
+      "name": "初音未来",
+      "originalName": "初音ミク",
+      "bangumiType": "character",
+      "bangumiId": 10452,
+      "color": "#39c5bb",
+      "cover": "https://lain.bgm.tv/r/100/pic/crt/l/00/71/10452_crt_UusO7.jpg"
     }
   ],
   "events": [
@@ -932,6 +941,46 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1001643",
         "evidence": "会员购 getV2 接口核实活动期（start_time 2026-11-20 19:30 / end_time 21:00，Asia/Shanghai）、场馆「东方艺术中心-音乐厅」、地址与坐标（GD 坐标系，GCJ-02）、票档、纸质票与入场规则；演出阵容与曲目范围取自接口 activity_content 官方介绍（其中明确列出《魔兽世界》《暗黑破坏神》《星际争霸》《炉石传说》《风暴英雄》《守望先锋》六个作品），据此新增并关联 6 个 Bangumi 游戏本体条目（《暗黑破坏神 II：重制版》对应 Diablo II: Resurrected 328831）。海报与横图取自接口 cover / banner 直链。"
+      }
+    },
+    {
+      "id": "damai-1081929985897",
+      "title": "初音未来·未来有你2026演唱会",
+      "workIds": [
+        "hatsune-miku"
+      ],
+      "type": "演出",
+      "country": "中国",
+      "province": "上海",
+      "city": "上海",
+      "district": "静安区",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "hours": "",
+      "sessionNote": "共5场演出，具体场次时间以票务页面为准",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海静安体育中心-体育馆",
+      "floor": "",
+      "address": "上海市静安区汶水路116号",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.4486562,
+        "lat": 31.2934039
+      },
+      "price": 380,
+      "priceMax": 1280,
+      "priceNote": "预售中，正式开票后配票；实际票价与余票以票务页面为准",
+      "poster": "https://gw.alicdn.com/bao/uploaded/i2/2251059038/O1CN01aUmPlsB0KYK24P4m_!!4611686018427383646-0-item_pic.jpg",
+      "banner": "https://gw.alicdn.com/bao/uploaded/i2/2251059038/O1CN01aUmPlsB0KYK24P4m_!!4611686018427383646-0-item_pic.jpg",
+      "posterAlt": "初音未来·未来有你2026演唱会海报",
+      "description": "初音未来·未来有你2026演唱会上海站，2026年10月31日至11月1日在上海静安体育中心体育馆举办。",
+      "highlights": [],
+      "notes": [],
+      "source": {
+        "name": "大麦",
+        "url": "https://m.damai.cn/shows/item.html?itemId=1081929985897",
+        "verifiedAt": "2026-09-27"
       }
     }
   ]
