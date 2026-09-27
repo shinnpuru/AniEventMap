@@ -114,6 +114,54 @@
       "bangumiId": 359101,
       "color": "#ee8fb0",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/5b/4f/359101_um1ru.jpg"
+    },
+    {
+      "id": "world-of-warcraft",
+      "name": "魔兽世界",
+      "originalName": "World of Warcraft",
+      "bangumiId": 277,
+      "color": "#2f6bb0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/20/f0/277_ncgtc.jpg"
+    },
+    {
+      "id": "diablo-2-resurrected",
+      "name": "暗黑破坏神2：狱火重生",
+      "originalName": "Diablo II: Resurrected",
+      "bangumiId": 328831,
+      "color": "#6e1f1f",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/73/e4/328831_nB25f.jpg"
+    },
+    {
+      "id": "starcraft",
+      "name": "星际争霸",
+      "originalName": "StarCraft",
+      "bangumiId": 608,
+      "color": "#3f7f7f",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/99/6a/608_WWws6.jpg"
+    },
+    {
+      "id": "hearthstone",
+      "name": "炉石传说",
+      "originalName": "Hearthstone",
+      "bangumiId": 84203,
+      "color": "#b8862f",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/02/b9/84203_04Bqx.jpg"
+    },
+    {
+      "id": "heroes-of-the-storm",
+      "name": "风暴英雄",
+      "originalName": "Heroes of the Storm",
+      "bangumiId": 116285,
+      "color": "#7a4fa0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/1c/66/116285_OGX2M.jpg"
+    },
+    {
+      "id": "overwatch",
+      "name": "守望先锋",
+      "originalName": "OVERWATCH",
+      "bangumiId": 117206,
+      "color": "#cf5f2f",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/c9/a1/117206_G7dmC.jpg"
     }
   ],
   "events": [
@@ -839,6 +887,51 @@
         "url": "https://www.jfdaily.com/sgh/detail?id=4048759",
         "verifiedAt": "2026-09-27",
         "evidence": "活动期（2026-09-12 至 11-01）、场馆（静安嘉里中心 JAKC）、展区分布、快闪店与购票渠道经上海静安官方微信公告核实（上观新闻转载 https://www.jfdaily.com/sgh/detail?id=4048759 ）；地址与每日开放时间经上海市人民政府英文网活动页核对 https://english.shanghai.gov.cn/en-LatestEvents/20260920/1f01a9130a114aa8905aa4f3cbcd51eb.html （Jing An Kerry Centre, No 1515 West Nanjing Road, 10 am–10 pm, Source: WeChat account of Jing'an district government）；票档与早鸟安排依据猫眼售票信息汇总 https://sh.bendibao.com/xiuxian/2026831/308854.shtm 。海报与横图取自官方公告配图（©nagano），已验证无 Referer 与带外站 Referer 时均返回 200。坐标为 OpenStreetMap 静安嘉里中心 WGS84。"
+      }
+    },
+    {
+      "id": "bilibili-1001643",
+      "title": "暴雪35周年官方游戏交响音乐会（Jason Hayes领衔）",
+      "workIds": ["world-of-warcraft", "diablo-2-resurrected", "starcraft", "hearthstone", "heroes-of-the-storm", "overwatch"],
+      "type": "演出",
+      "city": "上海",
+      "district": "浦东新区",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-20",
+      "hours": "19:30–21:00",
+      "sessionNote": "单场演出 · 19:30 开演 · 约90分钟",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "东方艺术中心",
+      "floor": "音乐厅",
+      "address": "上海市浦东新区丁香路425号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.54183,
+        "lat": 31.222467
+      },
+      "price": 280,
+      "priceMax": 1380,
+      "priceNote": "",
+      "poster": "https://i1.hdslb.com/bfs/openplatform/202605/qoVnrtrF1779766498_1779766498873.jpg",
+      "posterAlt": "上海·暴雪35周年官方游戏交响音乐会海报",
+      "banner": "https://i2.hdslb.com/bfs/openplatform/202605/ikRVhjed1779766374_1779766374057.jpg",
+      "description": "暴雪35周年官方游戏交响音乐会上海站，由暴雪传奇作曲家 Jason Hayes 领衔指挥、VGL 创始人 Tommy Tallarico 担纲主持。",
+      "highlights": [],
+      "notes": [
+        "票档：280 / 380 / 580 / 780 / 980 元，VIP 1380 元；2026-06-10 13:30 起开售。",
+        "纸质票：本场为纸质票（顺丰到付），演出当天携带收到的纸质门票验票入场（订单或订单截图无效）；单场票单日 1 次入场有效，一对一号入座。",
+        "1.2 米以上凭成人票入场，1.2 米以下谢绝入场；票品一经售出，不退不换（不支持 7 天无理由退票）。",
+        "VIP 权益：优选前排座位区域；演出后与 Jason Hayes、Tommy Tallarico 一对一签名互动；暴雪35周年限定纪念礼包（官方纪念节目册、限定乐谱、VIP 纪念票根）。",
+        "演出内容（接口官方介绍）：《魔兽世界》不同版本史诗乐章、《星际争霸》宇宙开场、《守望先锋》英雄旋律、《炉石传说》《风暴英雄》标志性音乐，并追加《暗黑破坏神 II：重制版》中国巡演世界首演段落；配合《巫妖王之怒》开场动画超清重制、《魔兽世界：至暗之夜》预告与《暗黑破坏神 II：重制版》影片的沉浸式大屏呈现。",
+        "本次为 7 城巡演（11/6 广州、11/8 深圳、11/11 武汉、11/13 成都、11/15 西安、11/18 北京、11/20 上海），本条按「跨城巡演按场馆分别记录」只收录上海站。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1001643",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1001643",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-11-20 19:30 / end_time 21:00，Asia/Shanghai）、场馆「东方艺术中心-音乐厅」、地址与坐标（GD 坐标系，GCJ-02）、票档、纸质票与入场规则；演出阵容与曲目范围取自接口 activity_content 官方介绍（其中明确列出《魔兽世界》《暗黑破坏神》《星际争霸》《炉石传说》《风暴英雄》《守望先锋》六个作品），据此新增并关联 6 个 Bangumi 游戏本体条目（《暗黑破坏神 II：重制版》对应 Diablo II: Resurrected 328831）。海报与横图取自接口 cover / banner 直链。"
       }
     }
   ]
