@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import {
   dataset,
+  workSchema,
+  bangumiUrl,
   eventSchema,
   eventStatus,
   dateMatches,
@@ -13,6 +15,21 @@ import {
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("Bangumi 兼容旧作品，并区分同号作品、角色和人物", () => {
+    const { bangumiType, ...legacy } = dataset.works[0];
+    expect(workSchema.parse(legacy).bangumiType).toBe("subject");
+    for (const type of ["subject", "character", "person"] as const) {
+      const entry = workSchema.parse({
+        ...legacy,
+        bangumiType: type,
+        bangumiId: 123,
+      });
+      expect(bangumiUrl(entry)).toBe(`https://bgm.tv/${type}/123`);
+    }
+    expect(
+      workSchema.safeParse({ ...legacy, bangumiType: "persons" }).success,
+    ).toBe(false);
+  });
   it("缺省国家和省份为中国上海，显式地区保持原值", () => {
     const { country, province, ...legacy } = e;
     const parsed = eventSchema.parse(legacy);

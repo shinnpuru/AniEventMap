@@ -53,19 +53,27 @@ export const eventSchema = z
     }),
   })
   .refine((e) => e.startDate <= e.endDate, "活动结束日期不能早于开始日期");
+export const workSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  originalName: z.string(),
+  bangumiType: z.enum(["subject", "character", "person"]).default("subject"),
+  bangumiId: z.number().int().positive(),
+  cover: z.url().optional(),
+  color: z.string(),
+});
+export function bangumiUrl(work: z.infer<typeof workSchema>) {
+  return `https://bgm.tv/${work.bangumiType}/${work.bangumiId}`;
+}
+export const bangumiTypeLabels = {
+  subject: "作品",
+  character: "角色",
+  person: "人物",
+};
 export const dataset = z
   .object({
     updatedAt: date,
-    works: z.array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-        originalName: z.string(),
-        bangumiId: z.number().int().positive(),
-        cover: z.url().optional(),
-        color: z.string(),
-      }),
-    ),
+    works: z.array(workSchema),
     events: z.array(eventSchema),
   })
   .parse(raw);

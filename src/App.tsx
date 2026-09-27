@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import {
   dataset,
+  bangumiUrl,
+  bangumiTypeLabels,
   dateMatches,
   validDateRange,
   compareEvents,
@@ -203,7 +205,7 @@ export default function App() {
               onClick={() => setTab("works")}
             >
               <Library size={17} />
-              作品
+              作品/人物
             </button>
             <button
               className={tab === "saved" ? "nav-active" : ""}
@@ -245,8 +247,8 @@ export default function App() {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="搜索作品、活动或地点"
-                aria-label="搜索作品、活动或地点"
+                placeholder="搜索作品、人物、活动或地点"
+                aria-label="搜索作品、人物、活动或地点"
               />
               {query && (
                 <button aria-label="清空搜索" onClick={() => setQuery("")}>
@@ -356,7 +358,7 @@ export default function App() {
                 {activeWork && tab !== "works" && (
                   <button
                     onClick={() => setWork("all")}
-                    aria-label="清除作品筛选"
+                    aria-label="清除条目筛选"
                   >
                     {activeWork.name}
                     <X size={12} />
@@ -377,7 +379,7 @@ export default function App() {
           <div className="results-heading">
             <span>
               {tab === "works"
-                ? "作品列表"
+                ? "作品与人物"
                 : tab === "saved"
                   ? "想去清单"
                   : "发现活动"}{" "}
@@ -411,7 +413,7 @@ export default function App() {
                     setTab("discover");
                   }}
                 >
-                  全部作品 <span>{matchingEvents.length} 场活动</span>
+                  全部条目 <span>{matchingEvents.length} 场活动</span>
                 </button>
                 {visibleWorks.map((w) => (
                   <button
@@ -441,14 +443,16 @@ export default function App() {
                     </span>
                     <span className="work-info">
                       <strong>{w.name}</strong>
-                      <small>{w.count} 场活动</small>
+                      <small>
+                        {bangumiTypeLabels[w.bangumiType]} · {w.count} 场活动
+                      </small>
                     </span>
                     <ArrowRight size={15} />
                   </button>
                 ))}
                 {visibleWorks.length === 0 && (
                   <div className="empty">
-                    <p>暂无匹配的作品</p>
+                    <p>暂无匹配的条目</p>
                     <button onClick={clear}>清除筛选</button>
                   </div>
                 )}
@@ -602,7 +606,7 @@ export default function App() {
                   return (
                     <a
                       key={id}
-                      href={`https://bgm.tv/subject/${w.bangumiId}`}
+                      href={bangumiUrl(w)}
                       target="_blank"
                       rel="noreferrer"
                     >
