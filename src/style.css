@@ -255,11 +255,13 @@ h1 span {
 }
 .type-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 19px 0 15px;
 }
 .type-tabs button {
   display: flex;
+  white-space: nowrap;
   align-items: center;
   justify-content: center;
   gap: 4px;

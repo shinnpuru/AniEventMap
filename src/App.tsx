@@ -25,7 +25,7 @@ import {
   type EventInfo,
 } from "./data";
 const MapView = lazy(() => import("./MapView"));
-const types = ["全部", "展览", "快闪", "演出"];
+const types = ["全部", "展览", "快闪", "演出", "同人Only"];
 function hashId() {
   return new URLSearchParams(location.hash.slice(1)).get("event");
 }
@@ -329,7 +329,13 @@ export default function App() {
                           ) : (
                             <>
                               ¥<b>{e.price}</b>
-                              <small>{e.priceMax ? " 起" : " / 人"}</small>
+                              <small>
+                                {e.priceUnit
+                                  ? ` / ${e.priceUnit}${e.priceMax ? "起" : ""}`
+                                  : e.priceMax
+                                    ? " 起"
+                                    : " / 人"}
+                              </small>
                             </>
                           )}
                         </span>
@@ -467,7 +473,7 @@ export default function App() {
                     <strong>
                       {event.price === 0
                         ? "免费"
-                        : `¥${event.price}${event.priceMax ? `–${event.priceMax}` : " / 人"}`}
+                        : `¥${event.price}${event.priceMax ? `–${event.priceMax}` : ""}${event.priceUnit ? ` / ${event.priceUnit}` : event.priceMax ? "" : " / 人"}`}
                     </strong>
                   </p>
                 </div>
@@ -486,7 +492,9 @@ export default function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {event.price === 0 ? "查看场次与预约" : "查看场次与购票"}{" "}
+                  {event.price === 0 || event.reservation
+                    ? "查看场次与预约"
+                    : "查看场次与购票"}{" "}
                   <ArrowUpRight size={17} />
                 </a>
                 <button

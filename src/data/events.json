@@ -28,6 +28,20 @@
       "originalName": "バンドリ！ ガールズバンドパーティ！",
       "bangumiId": 208415,
       "color": "#de548e"
+    },
+    {
+      "id": "blue-archive",
+      "name": "蔚蓝档案",
+      "originalName": "ブルーアーカイブ -Blue Archive-",
+      "bangumiId": 300648,
+      "color": "#4dace0"
+    },
+    {
+      "id": "girls-frontline-2",
+      "name": "少女前线2：追放",
+      "originalName": "少女前线2：追放",
+      "bangumiId": 306788,
+      "color": "#d99b48"
     }
   ],
   "events": [
@@ -188,6 +202,83 @@
         "url": "https://show.bilibili.com/platform/detail.html?id=1005699",
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005699"
+      }
+    },
+    {
+      "id": "bilibili-1005201",
+      "title": "蔚蓝档案同人ONLY——勇者之路",
+      "workIds": ["blue-archive"],
+      "type": "同人Only",
+      "city": "上海",
+      "district": "闵行区",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-03",
+      "hours": "09:00–17:00",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "虹桥品汇",
+      "floor": "A馆",
+      "address": "上海市闵行区申昆路1988号A栋",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.32511913385434,
+        "lat": 31.20805348704049
+      },
+      "price": 88,
+      "priceMax": 428,
+      "priceNote": "",
+      "poster": "https://i0.hdslb.com/bfs/openplatform/202608/kbiJ5prs1787568955_1787568955916.jpg",
+      "posterAlt": "上海·蔚蓝档案同人ONLY——勇者之路海报",
+      "banner": "https://i2.hdslb.com/bfs/openplatform/202608/MKl3TmT01787207183_1787207183273.png",
+      "description": "上海·蔚蓝档案同人ONLY——勇者之路",
+      "highlights": [],
+      "notes": [],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1005201",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005201"
+      }
+    },
+    {
+      "id": "bilibili-1006228",
+      "title": "少女前线2：追放 × 南十字星咖啡 主题餐厅",
+      "workIds": ["girls-frontline-2"],
+      "type": "快闪",
+      "city": "上海",
+      "district": "静安区",
+      "startDate": "2026-09-25",
+      "endDate": "2026-10-08",
+      "hours": "10:00–21:30",
+      "sessionNote": "10:00 / 12:00 / 14:00 / 16:00 / 18:00 / 20:00，每场90分钟",
+      "priceUnit": "桌预约",
+      "reservation": true,
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "南十字星咖啡",
+      "floor": "1层",
+      "address": "上海市静安区曲阜路137号1层",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.473595,
+        "lat": 31.242359
+      },
+      "price": 30,
+      "priceMax": 366,
+      "priceNote": "",
+      "poster": "https://i0.hdslb.com/bfs/openplatform/202609/equNMEiB1790073816_1790073816353.jpg",
+      "posterAlt": "上海·少女前线2：追放 × 南十字星咖啡 主题餐厅海报",
+      "banner": "https://i1.hdslb.com/bfs/openplatform/202609/xAaGiHMv1790073824_1790073824292.jpg",
+      "description": "上海·少女前线2：追放 × 南十字星咖啡 主题餐厅",
+      "highlights": [],
+      "notes": [
+        "预约费用按桌收取，可抵扣餐费，不可用于周边商品消费；一日店长访客票不含餐位。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006228",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006228"
       }
     }
   ]
