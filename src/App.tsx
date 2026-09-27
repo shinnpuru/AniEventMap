@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   CalendarDays,
@@ -10,8 +9,8 @@ import {
   Compass,
   ExternalLink,
   Heart,
-  Info,
   MapPin,
+  Menu,
   Search,
   Share2,
   Sparkles,
@@ -51,7 +50,7 @@ function Poster({
     <img
       className={className}
       src={event.poster}
-      alt={`${event.title}海报`}
+      alt={event.posterAlt || `${event.title}海报`}
       referrerPolicy="no-referrer"
       onError={(e) => {
         e.currentTarget.style.visibility = "hidden";
@@ -64,12 +63,14 @@ export default function App() {
     [type, setType] = useState("全部"),
     [date, setDate] = useState("all"),
     [work, setWork] = useState("all"),
+    [city, setCity] = useState("all"),
     [tab, setTab] = useState("discover");
   const [favorites, setFavorites] = useState(initialFavorites),
     [selected, setSelected] = useState<string | null>(hashId),
     [focusToken, setFocusToken] = useState(0),
+    [focusId, setFocusId] = useState<string | null>(null),
     [toast, setToast] = useState(""),
-    [mobileView, setMobileView] = useState("list"),
+    [sidebarOpen, setSidebarOpen] = useState(false),
     [today, setToday] = useState(shanghaiDate);
   const dialog = useRef<HTMLDialogElement>(null),
     previousFocus = useRef<HTMLElement | null>(null);
@@ -121,6 +122,7 @@ export default function App() {
         (tab !== "saved" || favorites.includes(e.id)) &&
         (type === "全部" || e.type === type) &&
         (work === "all" || e.workIds.includes(work)) &&
+        (city === "all" || e.city === city) &&
         dateMatches(e, date, today) &&
         `${e.title} ${e.venue} ${e.address} ${e.workIds.map((id) => dataset.works.find((w) => w.id === id)?.name).join(" ")}`
           .toLowerCase()
@@ -132,6 +134,7 @@ export default function App() {
     setType("全部");
     setDate("all");
     setWork("all");
+    setCity("all");
   };
   const share = async () => {
     try {
@@ -143,73 +146,60 @@ export default function App() {
   };
   return (
     <div className="app">
-      <header className="header">
-        <a
-          className="brand"
-          href={import.meta.env.BASE_URL}
-          aria-label="AniEventMap 首页"
-        >
-          <span className="brand-icon">
-            <MapPin size={23} />
-            <i>✦</i>
-          </span>
-          <span>
-            AniEvent<span className="brand-light">Map</span>
-            <small>把热爱，标在地图上</small>
-          </span>
-        </a>
-        <nav aria-label="主导航">
-          <button
-            className={tab === "discover" ? "nav-active" : ""}
-            onClick={() => setTab("discover")}
-          >
-            <Compass size={17} />
-            探索活动
-          </button>
-          <button
-            className={tab === "saved" ? "nav-active" : ""}
-            onClick={() => setTab("saved")}
-          >
-            <Heart size={17} />
-            我的想去{favorites.length > 0 && <b>{favorites.length}</b>}
-          </button>
-        </nav>
-        <span className="city-pill">
-          <span className="live-dot" />
-          上海 · SHANGHAI
-        </span>
-        <a
-          className="github-link"
-          href="https://github.com/shinnpuru/AniEventMap"
-          target="_blank"
-          rel="noreferrer"
-        >
-          关于项目 <ArrowUpRight size={15} />
-        </a>
-      </header>
-      <main className={`workspace mobile-${mobileView}`}>
-        <aside className="sidebar">
-          <div className="intro">
-            <div className="eyebrow">
-              <span /> YOUR NEXT LITTLE ADVENTURE
-            </div>
-            <h1>
-              {tab === "saved" ? (
-                "下一站，去见热爱。"
-              ) : (
-                <>
-                  在上海，
-                  <br />
-                  遇见喜欢的世界<span> ✧</span>
-                </>
-              )}
-            </h1>
-            <p>
-              {tab === "saved"
-                ? "收藏的小小期待，都在这里。"
-                : "展览、快闪与演出，下一次心动就在附近。"}
-            </p>
+      <button
+        className="sidebar-toggle"
+        aria-label={sidebarOpen ? "收起侧栏" : "展开侧栏"}
+        aria-expanded={sidebarOpen}
+        aria-controls="activity-sidebar"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <Menu size={21} />
+      </button>
+      <main
+        className={
+          sidebarOpen ? "workspace sidebar-open" : "workspace sidebar-closed"
+        }
+      >
+        <aside id="activity-sidebar" className="sidebar" hidden={!sidebarOpen}>
+          <div className="sidebar-brand">
+            <strong>AniEventMap</strong>
+            <button aria-label="收起侧栏" onClick={() => setSidebarOpen(false)}>
+              <X size={20} />
+            </button>
           </div>
+          <nav aria-label="主导航">
+            <button
+              className={tab === "discover" ? "nav-active" : ""}
+              onClick={() => setTab("discover")}
+            >
+              <Compass size={17} />
+              活动
+            </button>
+            <button
+              className={tab === "saved" ? "nav-active" : ""}
+              onClick={() => setTab("saved")}
+            >
+              <Heart size={17} />
+              想去{favorites.length > 0 && <b>{favorites.length}</b>}
+            </button>
+          </nav>
+          <label className="region-select">
+            <MapPin size={15} />
+            <select
+              aria-label="地区"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            >
+              <option value="all">全部地区</option>
+              {[...new Set(dataset.events.map((e) => e.city))]
+                .sort()
+                .map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+            </select>
+          </label>
           <div className="filters">
             <label className="search">
               <Search size={19} />
@@ -285,12 +275,12 @@ export default function App() {
                 <Search size={30} />
                 <h3>
                   {tab === "saved" && !favorites.length
-                    ? "把心动加入想去清单"
+                    ? "暂无收藏"
                     : "暂时没有匹配的活动"}
                 </h3>
                 <p>
                   {tab === "saved" && !favorites.length
-                    ? "点一下活动上的爱心，为下一次出发留个记号。"
+                    ? "点击活动上的爱心收藏。"
                     : "试试其他日期、作品或关键词。"}
                 </p>
                 <button
@@ -319,7 +309,10 @@ export default function App() {
                       <p>
                         <CalendarDays size={14} />
                         {e.startDate.replaceAll("-", ".")} —{" "}
-                        {e.endDate.slice(5).replace("-", ".")}
+                        {(e.startDate.slice(0, 4) === e.endDate.slice(0, 4)
+                          ? e.endDate.slice(5)
+                          : e.endDate
+                        ).replaceAll("-", ".")}
                       </p>
                       <p>
                         <MapPin size={14} />
@@ -332,7 +325,7 @@ export default function App() {
                         </span>
                         <span className="price">
                           ¥<b>{e.price}</b>
-                          <small> / 人</small>
+                          <small>{e.priceMax ? " 起" : " / 人"}</small>
                         </span>
                       </div>
                     </div>
@@ -353,13 +346,14 @@ export default function App() {
                   <button
                     className="card-footer"
                     onClick={() => {
-                      setMobileView("map");
+                      setSidebarOpen(false);
+                      setFocusId(e.id);
                       setFocusToken((n) => n + 1);
                     }}
                   >
                     <span>
                       <MapPin size={13} />
-                      在地图上找到它
+                      地图定位
                     </span>
                     <ArrowUpRight size={15} />
                   </button>
@@ -367,19 +361,8 @@ export default function App() {
               ))
             )}
           </div>
-          <div className="collection-note">
-            <span className="note-icon">✧</span>
-            <div>
-              <strong>从一个喜欢的作品开始</strong>
-              <p>
-                上海活动地图正在慢慢生长。
-                <br />
-                每一个坐标，都是一次值得期待的相遇。
-              </p>
-            </div>
-          </div>
           <footer className="sidebar-footer">
-            <span>已收录 {dataset.events.length} 场活动 · 持续发现中</span>
+            <span>{dataset.events.length} 场活动</span>
             <a
               href="https://github.com/shinnpuru/AniEventMap/issues"
               target="_blank"
@@ -390,60 +373,17 @@ export default function App() {
           </footer>
         </aside>
         <section className="map-panel" aria-label="地图探索">
-          <Suspense
-            fallback={<div className="map-loading">正在展开上海地图…</div>}
-          >
+          <Suspense fallback={<div className="map-loading">加载地图…</div>}>
             <MapView
               events={filtered}
               onSelect={show}
               focusToken={focusToken}
+              focusId={focusId}
+              region={city}
             />
           </Suspense>
-          <div className="map-top-label">
-            <MapPin size={17} />
-            <div>
-              <strong>上海</strong>
-              <span>SHANGHAI</span>
-            </div>
-            <span className="map-label-line" />
-            <span>{filtered.length} 个活动坐标</span>
-          </div>
-          <div className="map-story">
-            <span className="story-eyebrow">CITY WALK, ANIME WAY</span>
-            <p>
-              让喜欢的故事，
-              <br />
-              成为出门的理由。
-            </p>
-            <span>31°14′ N &nbsp; 121°28′ E</span>
-            <span className="story-star">✳</span>
-          </div>
-          <div className="map-legend">
-            <span className="pink-dot" />
-            展览
-            <span className="legend-blue" />
-            快闪
-            <span className="legend-orange" />
-            演出
-          </div>
-          <div className="map-caption">一张地图，收藏城市里的小小心动。</div>
         </section>
       </main>
-      <div className="mobile-switch">
-        <button
-          className={mobileView === "list" ? "active" : ""}
-          onClick={() => setMobileView("list")}
-        >
-          活动列表
-        </button>
-        <button
-          className={mobileView === "map" ? "active" : ""}
-          onClick={() => setMobileView("map")}
-        >
-          <MapPin size={15} />
-          地图探索
-        </button>
-      </div>
       <dialog
         ref={dialog}
         aria-label="活动详情"
@@ -457,13 +397,6 @@ export default function App() {
           <div className="detail-inner">
             <div className="detail-hero">
               <Poster event={event} />
-              <div className="detail-hero-copy">
-                <span>PUELLA MAGI MADOKA MAGICA</span>
-                <b>
-                  15<span>th</span>
-                </b>
-                <p>与喜欢的世界，再次相遇。</p>
-              </div>
               <button
                 className="close-detail"
                 aria-label="关闭活动详情"
@@ -479,7 +412,7 @@ export default function App() {
                   {eventStatus(event, today)}
                 </span>
                 <span>
-                  {event.type} / 上海·{event.district}
+                  {event.type} / {event.city}·{event.district}
                 </span>
               </div>
               <h2>{event.title}</h2>
@@ -507,7 +440,10 @@ export default function App() {
                       {event.startDate.replaceAll("-", ".")} —{" "}
                       {event.endDate.replaceAll("-", ".")}
                     </strong>
-                    <span>每日 {event.hours} · 按场次入场 · 每场80分钟</span>
+                    <span>
+                      {event.hours}
+                      {event.sessionNote && ` · ${event.sessionNote}`}
+                    </span>
                   </p>
                 </div>
                 <div>
@@ -522,34 +458,19 @@ export default function App() {
                 <div>
                   <Ticket />
                   <p>
-                    <strong>¥{event.price} / 人</strong>
-                    <span>{event.priceNote}</span>
+                    <strong>
+                      ¥{event.price}
+                      {event.priceMax ? `–${event.priceMax}` : " / 人"}
+                    </strong>
                   </p>
                 </div>
-              </div>
-              <p className="description">{event.description}</p>
-              <div className="highlights">
-                {event.highlights.map((h) => (
-                  <span key={h}>{h}</span>
-                ))}
-              </div>
-              <div className="visit-notes">
-                <h3>
-                  <Info size={15} />
-                  出发前的小提醒
-                </h3>
-                <ul>
-                  {event.notes.map((n) => (
-                    <li key={n}>{n}</li>
-                  ))}
-                </ul>
               </div>
               <div className="source-line">
                 信息来源：
                 <a href={event.source.url} target="_blank" rel="noreferrer">
                   {event.source.name} <ExternalLink size={11} />
                 </a>
-                <span>核实于 {event.source.verifiedAt}，非实时余票</span>
+                <span>更新于 {event.source.verifiedAt}</span>
               </div>
               <div className="detail-actions">
                 <a

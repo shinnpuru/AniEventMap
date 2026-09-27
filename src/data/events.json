@@ -7,6 +7,13 @@
       "originalName": "魔法少女まどか☆マギカ",
       "bangumiId": 9717,
       "color": "#bc6387"
+    },
+    {
+      "id": "evangelion",
+      "name": "新世纪福音战士",
+      "originalName": "新世紀エヴァンゲリオン",
+      "bangumiId": 265,
+      "color": "#786090"
     }
   ],
   "events": [
@@ -46,6 +53,52 @@
         "url": "https://show.bilibili.com/platform/detail.html?id=1005507",
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005507"
+      },
+      "anniversary": 15,
+      "heroLabel": "PUELLA MAGI MADOKA MAGICA",
+      "sessionNote": "按场次入场 · 每场80分钟"
+    },
+    {
+      "id": "maoyan-497705",
+      "title": "EVA新世纪福音战士30周年纪念活动",
+      "workIds": ["evangelion"],
+      "type": "展览",
+      "city": "上海",
+      "district": "黄浦区",
+      "startDate": "2026-09-24",
+      "endDate": "2027-01-03",
+      "hours": "营业时间待核实，请以猫眼页面及现场公告为准",
+      "anniversary": 30,
+      "heroLabel": "NEON GENESIS EVANGELION",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新世界城",
+      "floor": "11楼 · E展空间",
+      "address": "上海市黄浦区南京西路2–68号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.473671,
+        "lat": 31.235113
+      },
+      "price": 69,
+      "priceMax": 359,
+      "priceNote": "截图显示69–359元，含折扣票价；票种、优惠条件和实时余票以猫眼为准",
+      "poster": "https://p1.pipi.cn/mediaplus/fantasy_perform_fe/e42958bf7f05c2fa46b24eab349439751574c.png?imageMogr2/quality/80?imageMogr2/",
+      "posterAlt": "EVA新世纪福音战士30周年纪念活动海报",
+      "banner": "https://p1.pipi.cn/mediaplus/fantasy_perform_fe/e42958bf7f05c2fa46b24eab349439751574c.png?imageMogr2/quality/80?imageMogr2/",
+      "description": "新世纪福音战士30周年纪念活动来到上海新世界城11楼E展空间。活动展期根据猫眼页面内宣传图录入，具体内容与入场安排请查看来源页面。",
+      "highlights": ["EVA 30周年", "上海新世界城", "E展空间"],
+      "notes": [
+        "日期存在差异：页面顶部显示2026.09.27–2027.01.03，宣传图标注活动时间2026.09.24–2027.01.03。本地图采用宣传图展期，出发前请确认可选场次。",
+        "当前截图未提供每日营业时间和体验时长，尚待核实。",
+        "截图显示不支持退、官方票、电子票与电子发票；具体规则以购票页面为准。",
+        "点位复用同址新世界城场馆坐标，具体活动入口以现场指引为准。"
+      ],
+      "source": {
+        "name": "猫眼演出",
+        "url": "https://show.maoyan.com/qqw#/detail/497705",
+        "verifiedAt": "2026-09-27",
+        "evidence": "依据用户提供的猫眼页面截图整理（顶部活动信息与宣传图），非实时接口数据。"
       }
     }
   ]

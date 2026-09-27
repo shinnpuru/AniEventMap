@@ -5,9 +5,26 @@ import {
   dateMatches,
   mapCoordinates,
   shanghaiDate,
+  groupByVenue,
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("同址活动合并为场馆组，筛选后可恢复单活动标记", () => {
+    const pair = [e, { ...e, id: "same-venue" }];
+    expect(groupByVenue(pair)).toHaveLength(1);
+    expect(groupByVenue(pair)[0]).toHaveLength(2);
+    expect(
+      groupByVenue([
+        ...pair,
+        { ...e, coordinates: { system: "WGS84", lng: 116.4, lat: 39.9 } },
+      ]),
+    ).toHaveLength(2);
+    const eva = dataset.events.find((e) => e.id === "maoyan-497705")!;
+    expect(groupByVenue([eva])[0]).toEqual([eva]);
+    expect(dateMatches(eva, "today", "2027-01-03")).toBe(true);
+    expect(dateMatches(eva, "today", "2027-01-04")).toBe(false);
+    expect(eva.sessionNote).toBeUndefined();
+  });
   it("核验样例与作品关联", () => {
     expect(e.id).toBe("bilibili-1005507");
     expect(dataset.works[0].bangumiId).toBe(9717);

@@ -2,15 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { LocateFixed, Minus, Plus } from "lucide-react";
-import { mapCoordinates, type EventInfo } from "./data";
+import { mapCoordinates, groupByVenue, type EventInfo } from "./data";
 export default function MapView({
   events,
   onSelect,
   focusToken,
+  focusId,
+  region,
 }: {
   events: EventInfo[];
   onSelect: (id: string) => void;
   focusToken: number;
+  focusId: string | null;
+  region: string;
 }) {
   const container = useRef<HTMLDivElement>(null),
     map = useRef<maplibregl.Map | null>(null),
@@ -19,15 +23,27 @@ export default function MapView({
     [failed, setFailed] = useState(false);
   const select = useRef(onSelect);
   select.current = onSelect;
+  const currentEvents = useRef(events);
+  currentEvents.current = events;
+  const fitEvents = () => {
+    const instance = map.current;
+    const items = currentEvents.current;
+    if (!instance || !items.length) return;
+    const bounds = new maplibregl.LngLatBounds();
+    items.forEach((e) => bounds.extend(mapCoordinates(e.coordinates)));
+    instance.fitBounds(bounds, { padding: 90, maxZoom: 13.5, duration: 500 });
+  };
   useEffect(() => {
     if (!container.current) return;
     let instance: maplibregl.Map;
     try {
       instance = new maplibregl.Map({
         container: container.current,
-        center: [121.478, 31.2365],
+        center: events.length
+          ? mapCoordinates(events[0].coordinates)
+          : [104, 35],
         zoom: 13.5,
-        minZoom: 9,
+        minZoom: 2,
         maxZoom: 18,
         attributionControl: false,
         style: {
@@ -78,9 +94,36 @@ export default function MapView({
     };
   }, []);
   useEffect(() => {
+    if (ready) fitEvents();
+  }, [region, ready]);
+  useEffect(() => {
     if (!map.current || !ready) return;
     markers.current.forEach((m) => m.remove());
-    markers.current = events.map((e) => {
+    markers.current = groupByVenue(events).map((group) => {
+      const e = group[0];
+      if (group.length > 1) {
+        const container = document.createElement("div");
+        container.className = "venue-pin";
+        const heading = document.createElement("strong");
+        heading.textContent = `${e.venue} · ${group.length} 场活动`;
+        container.append(heading);
+        group.forEach((item) => {
+          const button = document.createElement("button");
+          button.setAttribute("aria-label", `查看${item.title}`);
+          const picture = document.createElement("img");
+          picture.src = item.poster;
+          picture.alt = "";
+          picture.referrerPolicy = "no-referrer";
+          const title = document.createElement("span");
+          title.textContent = item.title;
+          button.append(picture, title);
+          button.onclick = () => select.current(item.id);
+          container.append(button);
+        });
+        return new maplibregl.Marker({ element: container, anchor: "bottom" })
+          .setLngLat(mapCoordinates(e.coordinates))
+          .addTo(map.current!);
+      }
       const button = document.createElement("button");
       button.className = "event-pin";
       button.setAttribute("aria-label", `查看${e.title}`);
@@ -104,16 +147,17 @@ export default function MapView({
     };
   }, [events, ready]);
   useEffect(() => {
-    if (focusToken && map.current && events[0])
+    const target = events.find((e) => e.id === focusId);
+    if (focusToken && map.current && target)
       map.current.flyTo({
-        center: mapCoordinates(events[0].coordinates),
+        center: mapCoordinates(target.coordinates),
         zoom: 15,
         duration: 700,
       });
-  }, [focusToken, events]);
+  }, [focusToken, focusId, events]);
   return (
     <>
-      <div ref={container} className="map-canvas" aria-label="上海活动地图" />
+      <div ref={container} className="map-canvas" aria-label="活动地图" />
       {failed && (
         <div className="map-error" role="status">
           底图暂时无法加载，活动列表仍可浏览。
@@ -138,12 +182,7 @@ export default function MapView({
         <button aria-label="缩小地图" onClick={() => map.current?.zoomOut()}>
           <Minus size={19} />
         </button>
-        <button
-          aria-label="回到上海"
-          onClick={() =>
-            map.current?.flyTo({ center: [121.478, 31.2365], zoom: 13.5 })
-          }
-        >
+        <button aria-label="显示全部活动" onClick={fitEvents}>
           <LocateFixed size={19} />
         </button>
       </div>

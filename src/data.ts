@@ -18,6 +18,9 @@ const eventSchema = z
     startDate: date,
     endDate: date,
     hours: z.string(),
+    sessionNote: z.string().optional(),
+    anniversary: z.number().int().positive().optional(),
+    heroLabel: z.string().optional(),
     timezone: z.literal("Asia/Shanghai"),
     status: z.enum(["scheduled", "cancelled", "postponed"]),
     venue: z.string(),
@@ -29,8 +32,10 @@ const eventSchema = z
       lat: z.number().min(-90).max(90),
     }),
     price: z.number().nonnegative(),
+    priceMax: z.number().nonnegative().optional(),
     priceNote: z.string(),
     poster: z.url(),
+    posterAlt: z.string().optional(),
     banner: z.url(),
     description: z.string(),
     highlights: z.array(z.string()),
@@ -39,7 +44,8 @@ const eventSchema = z
       name: z.string(),
       url: z.url(),
       verifiedAt: date,
-      api: z.url(),
+      api: z.url().optional(),
+      evidence: z.string().optional(),
     }),
   })
   .refine((e) => e.startDate <= e.endDate, "活动结束日期不能早于开始日期");
@@ -66,6 +72,14 @@ for (const event of dataset.events) {
     throw new Error("作品关联不存在");
 }
 export type EventInfo = z.infer<typeof eventSchema>;
+export function groupByVenue(events: EventInfo[]) {
+  const groups = new Map<string, EventInfo[]>();
+  for (const event of events) {
+    const key = `${event.coordinates.system}:${event.coordinates.lng},${event.coordinates.lat}`;
+    groups.set(key, [...(groups.get(key) || []), event]);
+  }
+  return [...groups.values()];
+}
 export function shanghaiDate(now = new Date()) {
   return new Intl.DateTimeFormat("sv-SE", {
     timeZone: "Asia/Shanghai",
