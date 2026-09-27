@@ -14,9 +14,10 @@
 
 地区列表只显示已收录活动的城市。活动信息并非实时票务库存，最新场次和余票请查看来源页面。
 
-## 推荐活动与纠错
+## 参与贡献
 
-通过 [Issues](https://github.com/shinnpuru/AniEventMap/issues) 提供活动链接或需要更正的信息。
+- 功能建议：提交 [Issue](https://github.com/shinnpuru/AniEventMap/issues)。
+- 新增或修改活动：提交 [Pull Request](https://github.com/shinnpuru/AniEventMap/pulls)。
 
 [让你的 Agent 提交活动：SKILL.md](SKILL.md)
 
