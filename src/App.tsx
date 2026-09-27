@@ -1,0 +1,604 @@
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  Check,
+  ChevronDown,
+  Compass,
+  ExternalLink,
+  Heart,
+  Info,
+  MapPin,
+  Search,
+  Share2,
+  Sparkles,
+  Ticket,
+  X,
+} from "lucide-react";
+import {
+  dataset,
+  dateMatches,
+  eventStatus,
+  shanghaiDate,
+  type EventInfo,
+} from "./data";
+const MapView = lazy(() => import("./MapView"));
+const types = ["全部", "展览", "快闪", "演出"];
+function hashId() {
+  return new URLSearchParams(location.hash.slice(1)).get("event");
+}
+function initialFavorites(): string[] {
+  try {
+    const data = JSON.parse(localStorage.getItem("anievent:favorites") || "[]");
+    return Array.isArray(data)
+      ? data.filter((id: unknown) => typeof id === "string")
+      : [];
+  } catch {
+    return [];
+  }
+}
+function Poster({
+  event,
+  className = "",
+}: {
+  event: EventInfo;
+  className?: string;
+}) {
+  return (
+    <img
+      className={className}
+      src={event.poster}
+      alt={`${event.title}海报`}
+      referrerPolicy="no-referrer"
+      onError={(e) => {
+        e.currentTarget.style.visibility = "hidden";
+      }}
+    />
+  );
+}
+export default function App() {
+  const [query, setQuery] = useState(""),
+    [type, setType] = useState("全部"),
+    [date, setDate] = useState("all"),
+    [work, setWork] = useState("all"),
+    [tab, setTab] = useState("discover");
+  const [favorites, setFavorites] = useState(initialFavorites),
+    [selected, setSelected] = useState<string | null>(hashId),
+    [focusToken, setFocusToken] = useState(0),
+    [toast, setToast] = useState(""),
+    [mobileView, setMobileView] = useState("list"),
+    [today, setToday] = useState(shanghaiDate);
+  const dialog = useRef<HTMLDialogElement>(null),
+    previousFocus = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const timer = setInterval(() => setToday(shanghaiDate()), 60000);
+    return () => clearInterval(timer);
+  }, []);
+  useEffect(() => {
+    const update = () => setSelected(hashId());
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
+  const event = dataset.events.find((e) => e.id === selected);
+  useEffect(() => {
+    if (event) {
+      previousFocus.current = document.activeElement as HTMLElement;
+      dialog.current?.showModal();
+    } else if (dialog.current?.open) {
+      dialog.current.close();
+      previousFocus.current?.focus();
+    }
+  }, [event]);
+  useEffect(() => {
+    if (!toast) return;
+    const timeout = setTimeout(() => setToast(""), 3500);
+    return () => clearTimeout(timeout);
+  }, [toast]);
+  const show = (id: string) => {
+    location.hash = new URLSearchParams({ event: id }).toString();
+  };
+  const close = () => {
+    history.replaceState(null, "", location.pathname + location.search);
+    setSelected(null);
+  };
+  const toggle = (id: string) => {
+    const next = favorites.includes(id)
+      ? favorites.filter((x) => x !== id)
+      : [...favorites, id];
+    setFavorites(next);
+    try {
+      localStorage.setItem("anievent:favorites", JSON.stringify(next));
+    } catch {
+      setToast("当前浏览器无法保存收藏，离开页面后可能丢失。");
+    }
+  };
+  const filtered = dataset.events
+    .filter(
+      (e) =>
+        (tab !== "saved" || favorites.includes(e.id)) &&
+        (type === "全部" || e.type === type) &&
+        (work === "all" || e.workIds.includes(work)) &&
+        dateMatches(e, date, today) &&
+        `${e.title} ${e.venue} ${e.address} ${e.workIds.map((id) => dataset.works.find((w) => w.id === id)?.name).join(" ")}`
+          .toLowerCase()
+          .includes(query.toLowerCase().trim()),
+    )
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const clear = () => {
+    setQuery("");
+    setType("全部");
+    setDate("all");
+    setWork("all");
+  };
+  const share = async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      setToast("活动链接已复制");
+    } catch {
+      setToast("请复制浏览器地址栏中的活动链接");
+    }
+  };
+  return (
+    <div className="app">
+      <header className="header">
+        <a
+          className="brand"
+          href={import.meta.env.BASE_URL}
+          aria-label="AniEventMap 首页"
+        >
+          <span className="brand-icon">
+            <MapPin size={23} />
+            <i>✦</i>
+          </span>
+          <span>
+            AniEvent<span className="brand-light">Map</span>
+            <small>把热爱，标在地图上</small>
+          </span>
+        </a>
+        <nav aria-label="主导航">
+          <button
+            className={tab === "discover" ? "nav-active" : ""}
+            onClick={() => setTab("discover")}
+          >
+            <Compass size={17} />
+            探索活动
+          </button>
+          <button
+            className={tab === "saved" ? "nav-active" : ""}
+            onClick={() => setTab("saved")}
+          >
+            <Heart size={17} />
+            我的想去{favorites.length > 0 && <b>{favorites.length}</b>}
+          </button>
+        </nav>
+        <span className="city-pill">
+          <span className="live-dot" />
+          上海 · SHANGHAI
+        </span>
+        <a
+          className="github-link"
+          href="https://github.com/shinnpuru/AniEventMap"
+          target="_blank"
+          rel="noreferrer"
+        >
+          关于项目 <ArrowUpRight size={15} />
+        </a>
+      </header>
+      <main className={`workspace mobile-${mobileView}`}>
+        <aside className="sidebar">
+          <div className="intro">
+            <div className="eyebrow">
+              <span /> YOUR NEXT LITTLE ADVENTURE
+            </div>
+            <h1>
+              {tab === "saved" ? (
+                "下一站，去见热爱。"
+              ) : (
+                <>
+                  在上海，
+                  <br />
+                  遇见喜欢的世界<span> ✧</span>
+                </>
+              )}
+            </h1>
+            <p>
+              {tab === "saved"
+                ? "收藏的小小期待，都在这里。"
+                : "展览、快闪与演出，下一次心动就在附近。"}
+            </p>
+          </div>
+          <div className="filters">
+            <label className="search">
+              <Search size={19} />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="搜索作品、活动或地点"
+                aria-label="搜索作品、活动或地点"
+              />
+              {query && (
+                <button aria-label="清空搜索" onClick={() => setQuery("")}>
+                  <X size={16} />
+                </button>
+              )}
+            </label>
+            <div className="type-tabs" aria-label="活动类型">
+              {types.map((t) => (
+                <button
+                  key={t}
+                  className={type === t ? "selected" : ""}
+                  aria-pressed={type === t}
+                  onClick={() => setType(t)}
+                >
+                  {t === "全部" && <Sparkles size={14} />} {t}
+                </button>
+              ))}
+            </div>
+            <div className="select-row">
+              <label>
+                <CalendarDays size={15} />
+                <select
+                  aria-label="活动时间"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                >
+                  <option value="all">全部日期</option>
+                  <option value="today">今天可去</option>
+                  <option value="weekend">本周末</option>
+                  <option value="upcoming">即将开始</option>
+                </select>
+                <ChevronDown size={13} />
+              </label>
+              <label>
+                <span className="tiny-star">✦</span>
+                <select
+                  aria-label="关联作品"
+                  value={work}
+                  onChange={(e) => setWork(e.target.value)}
+                >
+                  <option value="all">全部作品</option>
+                  {dataset.works.map((w) => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={13} />
+              </label>
+            </div>
+          </div>
+          <div className="results-heading">
+            <span>
+              {tab === "saved" ? "想去清单" : "发现活动"}{" "}
+              <b>{filtered.length.toString().padStart(2, "0")}</b>
+            </span>
+            <span>
+              按开始日期 <ArrowDown size={12} />
+            </span>
+          </div>
+          <div className="event-list">
+            {filtered.length === 0 ? (
+              <div className="empty">
+                <Search size={30} />
+                <h3>
+                  {tab === "saved" && !favorites.length
+                    ? "把心动加入想去清单"
+                    : "暂时没有匹配的活动"}
+                </h3>
+                <p>
+                  {tab === "saved" && !favorites.length
+                    ? "点一下活动上的爱心，为下一次出发留个记号。"
+                    : "试试其他日期、作品或关键词。"}
+                </p>
+                <button
+                  onClick={() => {
+                    clear();
+                    setTab("discover");
+                  }}
+                >
+                  浏览全部活动 <ArrowRight size={15} />
+                </button>
+              </div>
+            ) : (
+              filtered.map((e) => (
+                <article className="event-card" key={e.id}>
+                  <button className="card-main" onClick={() => show(e.id)}>
+                    <div className="poster-wrap">
+                      <Poster event={e} />
+                      <span className="poster-tag">{e.type}</span>
+                    </div>
+                    <div className="card-content">
+                      <div className="card-kicker">
+                        <span className="pink-dot" />
+                        {dataset.works.find((w) => w.id === e.workIds[0])?.name}
+                      </div>
+                      <h2>{e.title}</h2>
+                      <p>
+                        <CalendarDays size={14} />
+                        {e.startDate.replaceAll("-", ".")} —{" "}
+                        {e.endDate.slice(5).replace("-", ".")}
+                      </p>
+                      <p>
+                        <MapPin size={14} />
+                        {e.venue} · {e.floor.split(" · ")[0]}
+                      </p>
+                      <div className="card-bottom">
+                        <span className="status">
+                          <span />
+                          {eventStatus(e, today)}
+                        </span>
+                        <span className="price">
+                          ¥<b>{e.price}</b>
+                          <small> / 人</small>
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                  <button
+                    className={`save-button ${favorites.includes(e.id) ? "saved" : ""}`}
+                    aria-label={
+                      favorites.includes(e.id) ? "取消想去" : "加入想去"
+                    }
+                    aria-pressed={favorites.includes(e.id)}
+                    onClick={() => toggle(e.id)}
+                  >
+                    <Heart
+                      size={17}
+                      fill={favorites.includes(e.id) ? "currentColor" : "none"}
+                    />
+                  </button>
+                  <button
+                    className="card-footer"
+                    onClick={() => {
+                      setMobileView("map");
+                      setFocusToken((n) => n + 1);
+                    }}
+                  >
+                    <span>
+                      <MapPin size={13} />
+                      在地图上找到它
+                    </span>
+                    <ArrowUpRight size={15} />
+                  </button>
+                </article>
+              ))
+            )}
+          </div>
+          <div className="collection-note">
+            <span className="note-icon">✧</span>
+            <div>
+              <strong>从一个喜欢的作品开始</strong>
+              <p>
+                上海活动地图正在慢慢生长。
+                <br />
+                每一个坐标，都是一次值得期待的相遇。
+              </p>
+            </div>
+          </div>
+          <footer className="sidebar-footer">
+            <span>已收录 {dataset.events.length} 场活动 · 持续发现中</span>
+            <a
+              href="https://github.com/shinnpuru/AniEventMap/issues"
+              target="_blank"
+              rel="noreferrer"
+            >
+              反馈建议 <ArrowUpRight size={12} />
+            </a>
+          </footer>
+        </aside>
+        <section className="map-panel" aria-label="地图探索">
+          <Suspense
+            fallback={<div className="map-loading">正在展开上海地图…</div>}
+          >
+            <MapView
+              events={filtered}
+              onSelect={show}
+              focusToken={focusToken}
+            />
+          </Suspense>
+          <div className="map-top-label">
+            <MapPin size={17} />
+            <div>
+              <strong>上海</strong>
+              <span>SHANGHAI</span>
+            </div>
+            <span className="map-label-line" />
+            <span>{filtered.length} 个活动坐标</span>
+          </div>
+          <div className="map-story">
+            <span className="story-eyebrow">CITY WALK, ANIME WAY</span>
+            <p>
+              让喜欢的故事，
+              <br />
+              成为出门的理由。
+            </p>
+            <span>31°14′ N &nbsp; 121°28′ E</span>
+            <span className="story-star">✳</span>
+          </div>
+          <div className="map-legend">
+            <span className="pink-dot" />
+            展览
+            <span className="legend-blue" />
+            快闪
+            <span className="legend-orange" />
+            演出
+          </div>
+          <div className="map-caption">一张地图，收藏城市里的小小心动。</div>
+        </section>
+      </main>
+      <div className="mobile-switch">
+        <button
+          className={mobileView === "list" ? "active" : ""}
+          onClick={() => setMobileView("list")}
+        >
+          活动列表
+        </button>
+        <button
+          className={mobileView === "map" ? "active" : ""}
+          onClick={() => setMobileView("map")}
+        >
+          <MapPin size={15} />
+          地图探索
+        </button>
+      </div>
+      <dialog
+        ref={dialog}
+        aria-label="活动详情"
+        className="detail-dialog"
+        onCancel={close}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) close();
+        }}
+      >
+        {event && (
+          <div className="detail-inner">
+            <div className="detail-hero">
+              <Poster event={event} />
+              <div className="detail-hero-copy">
+                <span>PUELLA MAGI MADOKA MAGICA</span>
+                <b>
+                  15<span>th</span>
+                </b>
+                <p>与喜欢的世界，再次相遇。</p>
+              </div>
+              <button
+                className="close-detail"
+                aria-label="关闭活动详情"
+                onClick={close}
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="detail-body">
+              <div className="detail-topline">
+                <span className="status">
+                  <span />
+                  {eventStatus(event, today)}
+                </span>
+                <span>
+                  {event.type} / 上海·{event.district}
+                </span>
+              </div>
+              <h2>{event.title}</h2>
+              <div className="work-links">
+                {event.workIds.map((id) => {
+                  const w = dataset.works.find((w) => w.id === id)!;
+                  return (
+                    <a
+                      key={id}
+                      href={`https://bgm.tv/subject/${w.bangumiId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      ✦ {w.name} <span>Bangumi</span>
+                      <ArrowUpRight size={13} />
+                    </a>
+                  );
+                })}
+              </div>
+              <div className="detail-facts">
+                <div>
+                  <CalendarDays />
+                  <p>
+                    <strong>
+                      {event.startDate.replaceAll("-", ".")} —{" "}
+                      {event.endDate.replaceAll("-", ".")}
+                    </strong>
+                    <span>每日 {event.hours} · 按场次入场 · 每场80分钟</span>
+                  </p>
+                </div>
+                <div>
+                  <MapPin />
+                  <p>
+                    <strong>
+                      {event.venue} · {event.floor}
+                    </strong>
+                    <span>{event.address}</span>
+                  </p>
+                </div>
+                <div>
+                  <Ticket />
+                  <p>
+                    <strong>¥{event.price} / 人</strong>
+                    <span>{event.priceNote}</span>
+                  </p>
+                </div>
+              </div>
+              <p className="description">{event.description}</p>
+              <div className="highlights">
+                {event.highlights.map((h) => (
+                  <span key={h}>{h}</span>
+                ))}
+              </div>
+              <div className="visit-notes">
+                <h3>
+                  <Info size={15} />
+                  出发前的小提醒
+                </h3>
+                <ul>
+                  {event.notes.map((n) => (
+                    <li key={n}>{n}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="source-line">
+                信息来源：
+                <a href={event.source.url} target="_blank" rel="noreferrer">
+                  {event.source.name} <ExternalLink size={11} />
+                </a>
+                <span>核实于 {event.source.verifiedAt}，非实时余票</span>
+              </div>
+              <div className="detail-actions">
+                <a
+                  className="ticket-button"
+                  href={event.source.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  查看场次与购票 <ArrowUpRight size={17} />
+                </a>
+                <button
+                  className={favorites.includes(event.id) ? "saved" : ""}
+                  onClick={() => toggle(event.id)}
+                >
+                  <Heart
+                    size={17}
+                    fill={
+                      favorites.includes(event.id) ? "currentColor" : "none"
+                    }
+                  />
+                  {favorites.includes(event.id) ? "已想去" : "想去"}
+                </button>
+                <button aria-label="分享活动" onClick={share}>
+                  {toast === "活动链接已复制" ? (
+                    <Check size={17} />
+                  ) : (
+                    <Share2 size={17} />
+                  )}
+                </button>
+              </div>
+              <a
+                className="navigation-link"
+                href={`https://uri.amap.com/marker?position=${event.coordinates.lng},${event.coordinates.lat}&name=${encodeURIComponent(event.venue)}&coordinate=${event.coordinates.system === "GCJ-02" ? "gaode" : "wgs84"}&callnative=1`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MapPin size={14} />
+                在高德地图中查看地点 <ArrowUpRight size={14} />
+              </a>
+            </div>
+          </div>
+        )}
+      </dialog>
+      {toast && (
+        <div className="toast" role="status">
+          <Check size={17} />
+          {toast}
+        </div>
+      )}
+    </div>
+  );
+}

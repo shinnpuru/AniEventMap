@@ -1,0 +1,52 @@
+{
+  "updatedAt": "2026-09-27",
+  "works": [
+    {
+      "id": "madoka-magica",
+      "name": "魔法少女小圆",
+      "originalName": "魔法少女まどか☆マギカ",
+      "bangumiId": 9717,
+      "color": "#bc6387"
+    }
+  ],
+  "events": [
+    {
+      "id": "bilibili-1005507",
+      "title": "《魔法少女小圆》15周年纪念特展",
+      "workIds": ["madoka-magica"],
+      "type": "展览",
+      "city": "上海",
+      "district": "黄浦区",
+      "startDate": "2026-09-23",
+      "endDate": "2026-11-01",
+      "hours": "10:00–21:30",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上海新世界城",
+      "floor": "11楼 · e展空间",
+      "address": "上海市黄浦区南京西路2–68号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.473671,
+        "lat": 31.235113
+      },
+      "price": 98,
+      "priceNote": "含门票礼赠；实际票价与余票以票务页面为准",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202609/TNXCEPIv1788229421_1788229421310.jpg",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202609/lHqcTqrD1788229428_1788229428773.jpg",
+      "description": "在上海，重逢魔法少女的世界。走进千平展览空间，探索多重沉浸式主题场景与珍贵素材，还有展览限定周边等待相遇。",
+      "highlights": ["15周年纪念", "沉浸式主题空间", "展览限定周边"],
+      "notes": [
+        "分场次入场，展览区每场体验时长为80分钟。请在购票页选择日期和场次。",
+        "凭购票二维码现场核验，订单截图无效。全部儿童需持全价票。",
+        "票务页面说明不支持退换，出发前请再次确认场次与最新公告。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1005507",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005507"
+      }
+    }
+  ]
+}
