@@ -89,6 +89,15 @@
       "bangumiId": 314398,
       "color": "#3b6f8f",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f9/9d/314398_R0A4x.jpg"
+    },
+    {
+      "id": "hello-kitty",
+      "name": "Hello Kitty",
+      "originalName": "Hello Kitty",
+      "bangumiType": "character",
+      "bangumiId": 26550,
+      "color": "#d9455f",
+      "cover": "https://lain.bgm.tv/r/200/pic/crt/l/db/c8/26550_crt_BB4vR.jpg"
     }
   ],
   "events": [
@@ -680,6 +689,51 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1005302",
         "evidence": "会员购 getV2 接口核实活动期（start_time 2026-09-19 00:00 / end_time 2026-10-19 23:59，Asia/Shanghai）、场馆「animate cafe上海店」、地址与坐标（GD 坐标系，GCJ-02）、票档与入场规则；海报与横图取自接口 cover / banner。screen_list 仅含 09-28 场次，未据此缩短活动期。作品关联为原作小说（Bangumi subject 314398，platform 小说，2018 年开始连载），未使用动画或真人版条目。"
+      }
+    },
+    {
+      "id": "bilibili-1006109",
+      "title": "Sanrio characters Cafe三丽鸥家族主题餐厅 Hello Kitty主题",
+      "workIds": ["hello-kitty"],
+      "type": "快闪",
+      "city": "上海",
+      "district": "黄浦区",
+      "startDate": "2026-09-23",
+      "endDate": "2027-01-17",
+      "hours": "10:30–22:00",
+      "sessionNote": "10:30 / 13:00 / 15:30 / 18:00 / 20:00，每场约2小时（21:00 停止餐饮点单）",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "第一百货商业中心(南京东路店)",
+      "floor": "C馆4楼",
+      "address": "上海市黄浦区南京东路830号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.47476107972915,
+        "lat": 31.23548090081347
+      },
+      "price": 10,
+      "reservation": true,
+      "priceNote": "",
+      "poster": "https://i0.hdslb.com/bfs/openplatform/202609/1goIxXQ91789438867_1789438867948.jpg",
+      "posterAlt": "上海·Sanrio characters Cafe三丽鸥家族主题餐厅 Hello Kitty主题海报",
+      "banner": "https://i0.hdslb.com/bfs/openplatform/202609/tHx6hwap1789438873_1789438873349.jpg",
+      "description": "Sanrio characters Cafe 三丽鸥家族主题餐厅（Hello Kitty 主题），位于第一百货商业中心 C馆4楼。",
+      "highlights": [],
+      "notes": [
+        "票档：10元预约金（付费预约，按单人预约）；单个 ID 限购 2 张。",
+        "场次：每日 10:30–12:30、13:00–15:00、15:30–17:30、18:00–20:00、20:00–22:00；营业时间 10:30–22:00，21:00 停止餐饮点单。",
+        "电子票，凭购票二维码到现场扫码验证入场（订单或订单截图无效）；单日单场次 1 次入场有效；全部儿童需持全价票入场。",
+        "退票：支持退票，退票截止 2027-01-17 22:00（来源退换说明）。",
+        "满赠活动（官方账号公示）：购买 Hello Kitty 系列主题餐饮赠送贴纸 1 张（全 3 款）；消费满 88 元随机赠送杯垫 1 款（全 3 款）。",
+        "楼层说明：会员购 place_info 为「B馆八楼SFC」，活动详情与官方账号公示均为「C馆4楼」，本条采用 C馆4楼。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006109",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006109",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-09-23 00:00 / end_time 2027-01-17 23:59，Asia/Shanghai）、场馆、地址与坐标（GD 坐标系，GCJ-02）、预约金与入场规则；海报与横图取自接口 cover / banner。楼层（C馆4楼）与满赠活动经官方微博账号 @Sanriocharacters_Cafe 公示交叉核对：https://www.sina.cn/news/detail/5343493154930981.html 。作品关联为 Bangumi 角色条目 Hello Kitty（character/26550）。"
       }
     }
   ]
