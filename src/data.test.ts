@@ -6,9 +6,84 @@ import {
   mapCoordinates,
   shanghaiDate,
   groupByVenue,
+  compareEvents,
+  formatPrice,
+  validDateRange,
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("自定义范围包含交集及首尾日，排除无效范围和取消活动", () => {
+    const event = { ...e, startDate: "2026-12-30", endDate: "2027-01-03" };
+    for (const range of [
+      { start: "2027-01-03", end: "2027-01-03" },
+      { start: "2026-12-01", end: "2026-12-30" },
+      { start: "2026-01-01", end: "2027-12-31" },
+    ]) {
+      expect(dateMatches(event, "custom", "2026-09-27", range)).toBe(true);
+    }
+    expect(
+      dateMatches(event, "custom", "2026-09-27", {
+        start: "2027-01-04",
+        end: "2027-01-05",
+      }),
+    ).toBe(false);
+    for (const range of [
+      { start: "", end: "" },
+      { start: "2026-02-30", end: "2026-03-01" },
+      { start: "2027-01-03", end: "2026-12-30" },
+    ])
+      expect(validDateRange(range)).toBe(false);
+    expect(
+      dateMatches({ ...event, status: "cancelled" }, "custom", "2026-09-27", {
+        start: "2026-12-30",
+        end: "2027-01-03",
+      }),
+    ).toBe(false);
+  });
+  it("按起售价和结束日期排序，统一价格显示", () => {
+    const events = [
+      {
+        ...e,
+        id: "a",
+        price: 80,
+        startDate: "2026-09-01",
+        endDate: "2026-12-01",
+      },
+      {
+        ...e,
+        id: "b",
+        price: 0,
+        startDate: "2026-10-01",
+        endDate: "2026-10-02",
+      },
+      {
+        ...e,
+        id: "c",
+        price: 30,
+        startDate: "2026-11-01",
+        endDate: "2026-11-02",
+      },
+    ];
+    expect(
+      [...events]
+        .sort((a, b) => compareEvents(a, b, "price-asc"))
+        .map((e) => e.id),
+    ).toEqual(["b", "c", "a"]);
+    expect(
+      [...events]
+        .sort((a, b) => compareEvents(a, b, "price-desc"))
+        .map((e) => e.id),
+    ).toEqual(["a", "c", "b"]);
+    expect(
+      [...events].sort((a, b) => compareEvents(a, b, "end")).map((e) => e.id),
+    ).toEqual(["b", "c", "a"]);
+    expect(
+      [...events].sort((a, b) => compareEvents(a, b, "start")).map((e) => e.id),
+    ).toEqual(["a", "b", "c"]);
+    expect(formatPrice(0)).toBe("免费");
+    expect(formatPrice(30)).toBe("30元起");
+    expect(formatPrice(69.9)).toBe("69.9元起");
+  });
   it("同址活动合并为场馆组，筛选后可恢复单活动标记", () => {
     const pair = [e, { ...e, id: "same-venue" }];
     expect(groupByVenue(pair)).toHaveLength(1);

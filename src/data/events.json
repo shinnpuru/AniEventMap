@@ -6,42 +6,48 @@
       "name": "魔法少女小圆",
       "originalName": "魔法少女まどか☆マギカ",
       "bangumiId": 9717,
-      "color": "#bc6387"
+      "color": "#bc6387",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/cb/57/9717_sAVag.jpg"
     },
     {
       "id": "evangelion",
       "name": "新世纪福音战士",
       "originalName": "新世紀エヴァンゲリオン",
       "bangumiId": 265,
-      "color": "#786090"
+      "color": "#786090",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e5/69/265_Z5Uou.jpg"
     },
     {
       "id": "undertale",
       "name": "传说之下",
       "originalName": "Undertale",
       "bangumiId": 147713,
-      "color": "#bf303c"
+      "color": "#bf303c",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/68/52/147713_r51UK.jpg"
     },
     {
       "id": "bang-dream-girls-band-party",
       "name": "BanG Dream! 少女乐团派对！",
       "originalName": "バンドリ！ ガールズバンドパーティ！",
       "bangumiId": 208415,
-      "color": "#de548e"
+      "color": "#de548e",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/b2/00/208415_9u4eO.jpg"
     },
     {
       "id": "blue-archive",
       "name": "蔚蓝档案",
       "originalName": "ブルーアーカイブ -Blue Archive-",
       "bangumiId": 300648,
-      "color": "#4dace0"
+      "color": "#4dace0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/4a/27/300648_Hfr75.jpg"
     },
     {
       "id": "girls-frontline-2",
       "name": "少女前线2：追放",
       "originalName": "少女前线2：追放",
       "bangumiId": 306788,
-      "color": "#d99b48"
+      "color": "#d99b48",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/6c/e6/306788_PmNMv.jpg"
     }
   ],
   "events": [

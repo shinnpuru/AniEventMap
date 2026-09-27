@@ -60,6 +60,7 @@ export const dataset = z
         name: z.string(),
         originalName: z.string(),
         bangumiId: z.number().int().positive(),
+        cover: z.url().optional(),
         color: z.string(),
       }),
     ),
@@ -74,6 +75,32 @@ for (const event of dataset.events) {
     throw new Error("作品关联不存在");
 }
 export type EventInfo = z.infer<typeof eventSchema>;
+export type EventSort = "start" | "end" | "price-asc" | "price-desc";
+export function formatPrice(price: number) {
+  return price === 0 ? "免费" : `${price}元起`;
+}
+export function compareEvents(a: EventInfo, b: EventInfo, sort: EventSort) {
+  const difference =
+    sort === "price-asc"
+      ? a.price - b.price
+      : sort === "price-desc"
+        ? b.price - a.price
+        : sort === "end"
+          ? a.endDate.localeCompare(b.endDate)
+          : a.startDate.localeCompare(b.startDate);
+  return (
+    difference ||
+    a.startDate.localeCompare(b.startDate) ||
+    a.id.localeCompare(b.id)
+  );
+}
+export function validDateRange(range: { start: string; end: string }) {
+  return (
+    date.safeParse(range.start).success &&
+    date.safeParse(range.end).success &&
+    range.start <= range.end
+  );
+}
 export function groupByVenue(events: EventInfo[]) {
   const groups = new Map<string, EventInfo[]>();
   for (const event of events) {
@@ -103,9 +130,17 @@ export function dateMatches(
   e: EventInfo,
   filter: string,
   today = shanghaiDate(),
+  range?: { start: string; end: string },
 ) {
   if (filter === "all") return true;
   if (e.status !== "scheduled") return false;
+  if (filter === "custom")
+    return (
+      !!range &&
+      validDateRange(range) &&
+      e.startDate <= range.end &&
+      e.endDate >= range.start
+    );
   if (filter === "today") return e.startDate <= today && e.endDate >= today;
   if (filter === "upcoming") return e.startDate > today;
   const d = new Date(today + "T12:00:00+08:00");
