@@ -1425,7 +1425,8 @@ h1 span {
   gap: 20px;
   padding: 0 18px;
 }
-.sidebar nav button {
+.sidebar nav button,
+.sidebar nav a {
   display: flex;
   align-items: center;
   gap: 7px;

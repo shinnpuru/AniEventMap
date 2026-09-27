@@ -11,6 +11,7 @@ import {
   Heart,
   MapPin,
   Menu,
+  Plus,
   Search,
   Share2,
   Sparkles,
@@ -182,6 +183,15 @@ export default function App() {
               <Heart size={17} />
               想去{favorites.length > 0 && <b>{favorites.length}</b>}
             </button>
+            <a
+              href="https://github.com/shinnpuru/AniEventMap/blob/main/SKILL.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="添加活动（新标签页打开投稿指引）"
+            >
+              <Plus size={17} />
+              添加
+            </a>
           </nav>
           <label className="region-select">
             <MapPin size={15} />
