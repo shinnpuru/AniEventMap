@@ -66,7 +66,7 @@ function Poster({
 export default function App() {
   const [query, setQuery] = useState(""),
     [type, setType] = useState("全部"),
-    [date, setDate] = useState("all"),
+    [date, setDate] = useState("next7"),
     [work, setWork] = useState("all"),
     [city, setCity] = useState("all"),
     [tab, setTab] = useState("discover");
@@ -274,9 +274,9 @@ export default function App() {
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                 >
+                  <option value="next7">7天内</option>
                   <option value="all">全部日期</option>
                   <option value="today">今天可去</option>
-                  <option value="weekend">本周末</option>
                   <option value="upcoming">即将开始</option>
                   {date === "custom" && (
                     <option value="custom">自定义日期</option>

@@ -12,6 +12,22 @@ import {
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("最近七天包含今天及后六天的在展活动，支持跨年", () => {
+    const today = "2026-12-29";
+    const matches = (startDate: string, endDate: string) =>
+      dateMatches({ ...e, startDate, endDate }, "next7", today);
+    expect(matches("2026-12-01", "2026-12-29")).toBe(true);
+    expect(matches("2027-01-04", "2027-01-04")).toBe(true);
+    expect(matches("2026-12-01", "2027-02-01")).toBe(true);
+    expect(matches("2026-12-01", "2026-12-28")).toBe(false);
+    expect(matches("2027-01-05", "2027-01-06")).toBe(false);
+    expect(
+      dateMatches({ ...e, status: "cancelled" }, "next7", e.startDate),
+    ).toBe(false);
+    expect(
+      dateMatches({ ...e, status: "postponed" }, "next7", e.startDate),
+    ).toBe(false);
+  });
   it("自定义范围包含交集及首尾日，排除无效范围和取消活动", () => {
     const event = { ...e, startDate: "2026-12-30", endDate: "2027-01-03" };
     for (const range of [

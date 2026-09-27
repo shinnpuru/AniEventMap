@@ -134,6 +134,11 @@ export function dateMatches(
 ) {
   if (filter === "all") return true;
   if (e.status !== "scheduled") return false;
+  if (filter === "next7") {
+    const end = new Date(today + "T12:00:00+08:00");
+    end.setUTCDate(end.getUTCDate() + 6);
+    return e.startDate <= shanghaiDate(end) && e.endDate >= today;
+  }
   if (filter === "custom")
     return (
       !!range &&

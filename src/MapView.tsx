@@ -8,7 +8,11 @@ const themes = {
   soft: { name: "柔和", saturation: -0.45, contrast: -0.08 },
   vivid: { name: "鲜明", saturation: 0.25, contrast: 0.08 },
 };
-const densities = { compact: "简洁", standard: "标准", detailed: "详细" };
+const densities = {
+  compact: { name: "简洁", tileSize: 512 },
+  standard: { name: "标准", tileSize: 256 },
+  detailed: { name: "丰富", tileSize: 128 },
+};
 type Appearance = {
   theme: keyof typeof themes;
   density: keyof typeof densities;
@@ -62,6 +66,18 @@ export default function MapView({
       /* Session settings still work when storage is unavailable. */
     }
     if (!ready || !map.current?.getLayer("base")) return;
+    const instance = map.current;
+    const source = instance.getStyle().sources.osm;
+    const tileSize = densities[appearance.density].tileSize;
+    if (source.type === "raster" && source.tileSize !== tileSize) {
+      const base = instance
+        .getStyle()
+        .layers.find((layer) => layer.id === "base")!;
+      instance.removeLayer("base");
+      instance.removeSource("osm");
+      instance.addSource("osm", { ...source, tileSize });
+      instance.addLayer(base);
+    }
     const theme = themes[appearance.theme];
     map.current.setPaintProperty("base", "raster-saturation", theme.saturation);
     map.current.setPaintProperty("base", "raster-contrast", theme.contrast);
@@ -122,7 +138,8 @@ export default function MapView({
                 import.meta.env.VITE_TILE_URL ||
                   "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
               ],
-              tileSize: 256,
+              tileSize: densities[appearance.density].tileSize,
+              maxzoom: 19,
               attribution:
                 import.meta.env.VITE_TILE_ATTRIBUTION ||
                 '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors',
@@ -168,77 +185,37 @@ export default function MapView({
   }, [region, ready]);
   useEffect(() => {
     if (!map.current || !ready) return;
-    const instance = map.current;
-    const venueGroups: HTMLDetailsElement[] = [];
-    const collapseGroups = () =>
-      venueGroups.forEach((group) => {
-        group.open = false;
-      });
-    instance.on("click", collapseGroups);
     markers.current.forEach((m) => m.remove());
     markers.current = groupByVenue(events).map((group) => {
-      const e = group[0];
-      if (group.length > 1) {
-        const container = document.createElement("details");
-        container.className = "venue-pin";
-        venueGroups.push(container);
-        container.onclick = (event) => event.stopPropagation();
-        container.ontoggle = () => {
-          if (container.open)
-            venueGroups.forEach((group) => {
-              if (group !== container) group.open = false;
-            });
+      const container = document.createElement("div");
+      container.className = "event-marker-group";
+      container.setAttribute("role", "group");
+      container.setAttribute("aria-label", group[0].venue);
+      group.forEach((event) => {
+        const button = document.createElement("button");
+        button.className = "event-pin";
+        button.setAttribute("aria-label", "查看" + event.title);
+        const picture = document.createElement("img");
+        picture.src = event.poster;
+        picture.alt = "";
+        picture.referrerPolicy = "no-referrer";
+        picture.onerror = () => {
+          picture.style.display = "none";
         };
-        const heading = document.createElement("summary");
-        heading.setAttribute(
-          "aria-label",
-          `${e.venue} · ${group.length} 场活动`,
-        );
-        const venue = document.createElement("span");
-        venue.className = "venue-name";
-        venue.textContent = `${e.venue} · `;
-        heading.append(venue, `${group.length} 场活动`);
-        container.append(heading);
-        const list = document.createElement("div");
-        list.className = "venue-events";
-        container.append(list);
-        group.forEach((item) => {
-          const button = document.createElement("button");
-          button.setAttribute("aria-label", `查看${item.title}`);
-          const picture = document.createElement("img");
-          picture.src = item.poster;
-          picture.alt = "";
-          picture.referrerPolicy = "no-referrer";
-          const title = document.createElement("span");
-          title.textContent = item.title;
-          button.append(picture, title);
-          button.onclick = () => select.current(item.id);
-          list.append(button);
-        });
-        return new maplibregl.Marker({ element: container, anchor: "bottom" })
-          .setLngLat(mapCoordinates(e.coordinates))
-          .addTo(map.current!);
-      }
-      const button = document.createElement("button");
-      button.className = "event-pin";
-      button.setAttribute("aria-label", `查看${e.title}`);
-      const picture = document.createElement("img");
-      picture.src = e.poster;
-      picture.alt = "";
-      picture.referrerPolicy = "no-referrer";
-      picture.onerror = () => {
-        picture.style.display = "none";
-      };
-      const label = document.createElement("span");
-      label.textContent = e.title;
-      button.append(picture, label);
-      button.onclick = () => select.current(e.id);
-      return new maplibregl.Marker({ element: button, anchor: "bottom" })
-        .setLngLat(mapCoordinates(e.coordinates))
+        const label = document.createElement("span");
+        label.textContent = event.title;
+        button.append(picture, label);
+        button.onclick = (click) => {
+          click.stopPropagation();
+          select.current(event.id);
+        };
+        container.append(button);
+      });
+      return new maplibregl.Marker({ element: container, anchor: "bottom" })
+        .setLngLat(mapCoordinates(group[0].coordinates))
         .addTo(map.current!);
     });
     return () => {
-      instance.off("click", collapseGroups);
       markers.current.forEach((m) => m.remove());
     };
   }, [events, ready]);
@@ -253,11 +230,7 @@ export default function MapView({
   }, [focusToken, focusId, events]);
   return (
     <>
-      <div
-        ref={container}
-        className={`map-canvas density-${appearance.density}`}
-        aria-label="活动地图"
-      />
+      <div ref={container} className="map-canvas" aria-label="活动地图" />
       {failed && (
         <div className="map-error" role="status">
           底图暂时无法加载，活动列表仍可浏览。
@@ -330,7 +303,7 @@ export default function MapView({
             </div>
           </fieldset>
           <fieldset>
-            <legend>活动标记密度</legend>
+            <legend>底图密度</legend>
             <div className="appearance-options">
               {(Object.keys(densities) as Appearance["density"][]).map(
                 (density) => (
@@ -339,7 +312,7 @@ export default function MapView({
                     aria-pressed={appearance.density === density}
                     onClick={() => setAppearance({ ...appearance, density })}
                   >
-                    {densities[density]}
+                    {densities[density].name}
                   </button>
                 ),
               )}

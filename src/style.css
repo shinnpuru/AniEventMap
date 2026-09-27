@@ -662,47 +662,69 @@ h1 span {
   font-size: 9px !important;
   background: #ffffffe8 !important;
 }
+.event-marker-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  --pin-width: 48px;
+  --pin-height: 64px;
+}
+.event-marker-group:hover,
+.event-marker-group:focus-within {
+  z-index: 1;
+}
+.event-marker-group:after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 6px);
+  bottom: -7px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid #fff;
+}
 .event-pin {
-  height: 74px;
-  width: 58px;
-  border: 4px solid white;
-  border-radius: 14px 14px 14px 3px;
+  position: relative;
+  flex: none;
+  width: var(--pin-width);
+  height: var(--pin-height);
+  padding: 0;
+  border: 3px solid white;
+  border-radius: 8px;
   background: #bd7897;
-  box-shadow: 0 5px 20px #82526940;
-  overflow: visible;
-  transform-origin: bottom;
+  box-shadow: 0 3px 12px #60414f30;
 }
 .event-pin img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 9px 9px 9px 0;
-}
-.event-pin:after {
-  content: "";
-  position: absolute;
-  left: 19px;
-  bottom: -11px;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 8px solid #fff;
+  border-radius: 5px;
 }
 .event-pin > span {
+  display: none;
   position: absolute;
+  bottom: calc(100% + 12px);
   left: 50%;
-  bottom: 85px;
   transform: translateX(-50%);
-  white-space: nowrap;
-  background: #fffefbed;
-  padding: 9px 12px;
+  width: max-content;
+  max-width: min(240px, 70vw);
+  white-space: normal;
+  background: #fffefa;
+  padding: 8px 10px;
   border: 1px solid #e8dfe3;
-  border-radius: 7px;
-  font-size: 11px;
-  color: #865d73;
-  box-shadow: 0 3px 9px #60414f13;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5c4a54;
+  box-shadow: 0 3px 9px #60414f20;
+  pointer-events: none;
 }
-.event-pin:hover {
-  box-shadow: 0 6px 25px #82526975;
+.event-pin:hover,
+.event-pin:focus-visible {
+  z-index: 1;
+}
+.event-pin:hover > span,
+.event-pin:focus-visible > span {
+  display: block;
 }
 .map-error {
   position: absolute;
@@ -1321,60 +1343,6 @@ h1 span {
     display: none;
   }
 }
-.venue-pin {
-  position: relative;
-  width: max-content;
-  max-width: 255px;
-  padding: 0;
-  background: #fffefa;
-  border: 1px solid #dddfe4;
-  border-radius: 12px;
-  box-shadow: 0 5px 25px #47395825;
-}
-.venue-pin:after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: calc(50% - 10px);
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #fffefa;
-}
-.venue-pin > summary {
-  cursor: pointer;
-  font-size: 12px;
-  padding: 12px;
-  color: #63745c;
-}
-.venue-pin[open] {
-  width: 255px;
-  z-index: 2;
-}
-.venue-events {
-  max-height: min(300px, 50dvh);
-  overflow-y: auto;
-  padding: 0 12px;
-}
-.venue-events > button {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  align-items: center;
-  text-align: left;
-  border-top: 1px solid #edf0e7;
-  padding: 8px 0;
-  font-size: 11px;
-  line-height: 1.7;
-}
-.venue-events > button:hover {
-  background: #f0f3eb;
-}
-.venue-pin img {
-  width: 37px;
-  height: 49px;
-  object-fit: cover;
-  border-radius: 4px;
-}
 .detail-hero-copy b span {
   font-size: 23px;
   margin-left: 8px;
@@ -1768,42 +1736,6 @@ h1 span {
   border-color: var(--green);
   color: var(--green);
   background: #edf3e8;
-}
-.density-compact .event-pin {
-  width: 40px;
-  height: 52px;
-  border-width: 3px;
-  border-radius: 9px 9px 9px 3px;
-}
-.density-compact .event-pin:after {
-  left: 10px;
-}
-.density-compact .event-pin > span {
-  display: none;
-  bottom: 60px;
-  max-width: 220px;
-  white-space: normal;
-}
-.density-compact .event-pin:hover > span,
-.density-compact .event-pin:focus-visible > span {
-  display: block;
-}
-.density-compact .venue-pin:not([open]) .venue-name {
-  display: none;
-}
-.density-compact .venue-pin > summary {
-  padding: 9px;
-}
-.density-standard .event-pin > span {
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.density-detailed .event-pin > span {
-  width: max-content;
-  max-width: 250px;
-  white-space: normal;
-  line-height: 1.6;
 }
 @media (max-height: 440px) {
   .map-appearance {
