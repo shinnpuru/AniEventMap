@@ -1745,3 +1745,20 @@ h1 span {
     max-width: calc(100% - 86px);
   }
 }
+.map-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.amap-marker-content {
+  width: max-content;
+}
+.amap-marker:has(.event-pin:hover),
+.amap-marker:has(.event-pin:focus-visible) {
+  z-index: 101 !important;
+}
+.appearance-options button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

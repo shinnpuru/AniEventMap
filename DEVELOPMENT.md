@@ -20,7 +20,7 @@ git diff --check
 ## 结构
 
 - `src/App.tsx`：侧栏、筛选、收藏、活动详情与分享。
-- `src/MapView.tsx`：地图、同址分组与定位。
+- `src/MapView.tsx`：地图来源切换；`src/AMapView.tsx`、`src/OSMMapView.tsx` 分别实现高德和 OSM 地图；`src/amap.ts` 负责高德加载及坐标转换。
 - `src/style.css`：桌面和移动端样式。
 - `src/data/events.json`：作品与活动数据。
 - `src/data.ts`：Zod 校验、日期筛选与坐标转换。
@@ -33,13 +33,21 @@ git diff --check
 
 ## 约定
 
-全屏地图，侧栏默认收起，同址多活动默认折叠。地区由数据生成，不绑定上海。保持界面简洁，避免营销文案、票价免责声明和冗长入场须知；保留价格单位、场次和预约入口等有效信息。
+全屏地图，侧栏默认收起，同址多活动缩略图横向排列，悬停或键盘聚焦显示标题。地区由数据生成，不绑定上海。保持界面简洁，避免营销文案、票价免责声明和冗长入场须知；价格统一为“xx元起”或“免费”，保留场次和预约入口。
 
 日期当前统一采用 Asia/Shanghai。收藏仅保存在浏览器，深链接使用 `#event=<id>`。没有服务端、账户同步或自动投稿审核服务。
 
 ## 地图
 
-默认使用 OpenStreetMap 栅格瓦片。保留可见版权标识，正常使用浏览器缓存，不做离线批量预下载。公共瓦片不保证可用性，扩大规模时需选择合适的托管服务。
+配置高德凭证后默认使用高德 JS API 2.0，可在地图外观中切换至 OpenStreetMap；未配置凭证时使用 OSM（包括不提供 Secrets 的外部 PR 构建）。
+
+在 GitHub 仓库 Settings → Secrets and variables → Actions 添加 `AMAP_KEY` 和 `AMAP_SECURITY_CODE`，部署工作流分别注入 `VITE_AMAP_KEY`、`VITE_AMAP_SECURITY_CODE`。更换 Secret 后需重新运行部署。高德控制台配置域名白名单 `map.shinnpuru.site`。本地开发在被 Git 忽略的 `.env.local` 中设置上述两个 `VITE_` 变量；不要提交实际值。
+
+当前为用户选定的纯静态直连方案：两个凭证都会进入公开前端产物。GitHub Secrets 保护源码及构建日志，不隐藏浏览器中的值。若以后需要隐藏安全密钥，改为服务端代理。
+
+高德直接使用数据中的 GCJ-02 坐标，WGS84 通过高德转换；OSM 使用 WGS84。高德密度通过背景、道路、兴趣点及建筑图层开关控制，主题使用官方样式。
+
+OSM 使用栅格瓦片。保留可见版权标识，正常使用浏览器缓存，不做离线批量预下载。公共瓦片不保证可用性，扩大规模时需选择合适的托管服务。
 
 可在 `.env.local` 或构建环境设置：
 
@@ -48,7 +56,7 @@ VITE_TILE_URL=https://your-provider.example/{z}/{x}/{y}.png
 VITE_TILE_ATTRIBUTION=Your provider attribution
 ```
 
-VITE_* 会进入公开前端产物，不能存放私密凭证。遵循 [OSM 瓦片政策](https://operations.osmfoundation.org/policies/tiles/)。
+VITE_* 会进入公开前端产物，不要将需要保密的服务端凭证放入这些变量。遵循 [OSM 瓦片政策](https://operations.osmfoundation.org/policies/tiles/)。
 
 ## 发布
 
