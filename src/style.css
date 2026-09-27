@@ -1323,8 +1323,9 @@ h1 span {
 }
 .venue-pin {
   position: relative;
-  width: 255px;
-  padding: 12px;
+  width: max-content;
+  max-width: 255px;
+  padding: 0;
   background: #fffefa;
   border: 1px solid #dddfe4;
   border-radius: 12px;
@@ -1339,13 +1340,22 @@ h1 span {
   border-right: 10px solid transparent;
   border-top: 10px solid #fffefa;
 }
-.venue-pin > strong {
-  display: block;
+.venue-pin > summary {
+  cursor: pointer;
   font-size: 12px;
-  padding: 0 0 8px;
+  padding: 12px;
   color: #63745c;
 }
-.venue-pin > button {
+.venue-pin[open] {
+  width: 255px;
+  z-index: 2;
+}
+.venue-events {
+  max-height: min(300px, 50dvh);
+  overflow-y: auto;
+  padding: 0 12px;
+}
+.venue-events > button {
   display: flex;
   width: 100%;
   gap: 10px;
@@ -1356,7 +1366,7 @@ h1 span {
   font-size: 11px;
   line-height: 1.7;
 }
-.venue-pin > button:hover {
+.venue-events > button:hover {
   background: #f0f3eb;
 }
 .venue-pin img {

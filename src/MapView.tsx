@@ -98,15 +98,33 @@ export default function MapView({
   }, [region, ready]);
   useEffect(() => {
     if (!map.current || !ready) return;
+    const instance = map.current;
+    const venueGroups: HTMLDetailsElement[] = [];
+    const collapseGroups = () =>
+      venueGroups.forEach((group) => {
+        group.open = false;
+      });
+    instance.on("click", collapseGroups);
     markers.current.forEach((m) => m.remove());
     markers.current = groupByVenue(events).map((group) => {
       const e = group[0];
       if (group.length > 1) {
-        const container = document.createElement("div");
+        const container = document.createElement("details");
         container.className = "venue-pin";
-        const heading = document.createElement("strong");
+        venueGroups.push(container);
+        container.onclick = (event) => event.stopPropagation();
+        container.ontoggle = () => {
+          if (container.open)
+            venueGroups.forEach((group) => {
+              if (group !== container) group.open = false;
+            });
+        };
+        const heading = document.createElement("summary");
         heading.textContent = `${e.venue} · ${group.length} 场活动`;
         container.append(heading);
+        const list = document.createElement("div");
+        list.className = "venue-events";
+        container.append(list);
         group.forEach((item) => {
           const button = document.createElement("button");
           button.setAttribute("aria-label", `查看${item.title}`);
@@ -118,7 +136,7 @@ export default function MapView({
           title.textContent = item.title;
           button.append(picture, title);
           button.onclick = () => select.current(item.id);
-          container.append(button);
+          list.append(button);
         });
         return new maplibregl.Marker({ element: container, anchor: "bottom" })
           .setLngLat(mapCoordinates(e.coordinates))
@@ -143,6 +161,7 @@ export default function MapView({
         .addTo(map.current!);
     });
     return () => {
+      instance.off("click", collapseGroups);
       markers.current.forEach((m) => m.remove());
     };
   }, [events, ready]);
