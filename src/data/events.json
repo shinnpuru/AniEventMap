@@ -14,6 +14,13 @@
       "originalName": "新世紀エヴァンゲリオン",
       "bangumiId": 265,
       "color": "#786090"
+    },
+    {
+      "id": "undertale",
+      "name": "传说之下",
+      "originalName": "Undertale",
+      "bangumiId": 147713,
+      "color": "#bf303c"
     }
   ],
   "events": [
@@ -99,6 +106,43 @@
         "url": "https://show.maoyan.com/qqw#/detail/497705",
         "verifiedAt": "2026-09-27",
         "evidence": "依据用户提供的猫眼页面截图整理（顶部活动信息与宣传图），非实时接口数据。"
+      }
+    },
+    {
+      "id": "damai-1072650157253",
+      "title": "《传说之下》交响音乐会",
+      "workIds": ["undertale"],
+      "type": "演出",
+      "city": "上海",
+      "district": "徐汇区",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-03",
+      "hours": "每天 14:30、19:30",
+      "sessionNote": "约150分钟（含中场休息20分钟）",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "上音歌剧院",
+      "floor": "歌剧厅",
+      "address": "上海市徐汇区汾阳路6号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.455425,
+        "lat": 31.214725
+      },
+      "price": 280,
+      "priceMax": 1080,
+      "priceNote": "",
+      "poster": "https://img.alicdn.com/imgextra/i1/2251059038/O1CN01ayq3SbgXVhL0gnh0_!!2251059038.png",
+      "posterAlt": "《传说之下》交响音乐会海报",
+      "banner": "https://img.alicdn.com/imgextra/i1/2251059038/O1CN01ayq3SbgXVhL0gnh0_!!2251059038.png",
+      "description": "UNDERTALE: The Determination Symphony 上海站。",
+      "highlights": [],
+      "notes": [],
+      "source": {
+        "name": "大麦",
+        "url": "https://detail.damai.cn/item.htm?id=1072650157253",
+        "verifiedAt": "2026-09-27",
+        "evidence": "大麦详情页的四场演出时间、票价、场馆、时长及海报；主办方公告 https://www.sina.cn/news/detail/5331135443503326.html 交叉核对；地图坐标来自高德 https://www.amap.com/place/B0FFKBUMWT 。"
       }
     }
   ]
