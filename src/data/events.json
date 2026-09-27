@@ -64,6 +64,15 @@
       "bangumiId": 172168,
       "color": "#6a7fd0",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/40/ae/172168_Al7K6.jpg"
+    },
+    {
+      "id": "a-soul",
+      "name": "A-SOUL",
+      "originalName": "A-Soul",
+      "bangumiType": "person",
+      "bangumiId": 42445,
+      "color": "#8a5cd6",
+      "cover": "https://lain.bgm.tv/r/200/pic/crt/l/a1/63/42445_prsn_4nvv5.jpg"
     }
   ],
   "events": [
@@ -438,6 +447,50 @@
         "verifiedAt": "2026-09-27",
         "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1004973",
         "evidence": "会员购 getV2 接口核实活动期（2026-10-03 至 2026-10-04，每日 08:30–17:00、16:00 停止检票）、场馆地址、坐标（GD 坐标系，GCJ-02）、票档与实名入场规则；海报与横图取自接口 cover / banner。本活动为多 IP 综合手办模型展，Bangumi 无 Wonder Festival 条目（subject / person 搜索均为空），经维护者确认 workIds 允许为空，故本条不关联作品。"
+      }
+    },
+    {
+      "id": "bilibili-1006434",
+      "title": "A-SOUL此间共鸣线下演唱会",
+      "workIds": ["a-soul"],
+      "type": "演出",
+      "city": "上海",
+      "district": "徐汇区",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "hours": "每天 19:30–21:30",
+      "sessionNote": "两日各一场 · 19:30 开演 · 约120分钟",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "LIVERSE音宇宙（上海）",
+      "floor": "",
+      "address": "上海市徐汇区叠彩路133号",
+      "coordinates": {
+        "system": "GCJ-02",
+        "lng": 121.41421648579342,
+        "lat": 31.16737089948113
+      },
+      "price": 388,
+      "priceMax": 1888,
+      "priceNote": "",
+      "poster": "https://i2.hdslb.com/bfs/openplatform/202609/k3tYzq781790234676_1790234676045.jpg",
+      "posterAlt": "A-SOUL此间共鸣线下演唱会海报",
+      "banner": "https://i1.hdslb.com/bfs/openplatform/202609/EAaKsPae1790234687_1790234687946.jpg",
+      "description": "上海·A-SOUL此间共鸣线下演唱会",
+      "highlights": [],
+      "notes": [
+        "票档：普通票388元、VIP票888元、SVIP票1888元，两日票价相同。",
+        "电子票，凭购票二维码验证入场（订单或订单截图无效）；非选座项目，一对一座位，有序对号入座。",
+        "一人一证实名购票，须填写真实身份信息与手机号，购票后不支持更换身份证信息；每个 UID 限购 4 张；1.2米以下儿童谢绝入场。",
+        "核验时会员购页面显示未开售，开售时间为 2026-09-29 12:00；不支持7天无理由退票。",
+        "海报标注场地为「LIVERSE音宇宙艺术中心」，会员购场馆名为「LIVERSE音宇宙（上海）」，本条采用票务平台名称。"
+      ],
+      "source": {
+        "name": "哔哩哔哩会员购",
+        "url": "https://show.bilibili.com/platform/detail.html?id=1006434",
+        "verifiedAt": "2026-09-27",
+        "api": "https://show.bilibili.com/api/ticket/project/getV2?id=1006434",
+        "evidence": "会员购 getV2 接口核实活动期（start_time 2026-10-24 19:30 / end_time 2026-10-25 21:30，Asia/Shanghai）、场馆地址、票档与入场规则；海报与横图取自接口 cover / banner。作品 A-SOUL 在 Bangumi 为人物（person）条目 https://bgm.tv/person/42445 ，非 subject，bangumiId 记该数字 ID；若前端按 bgm.tv/subject/ 拼接链接需改为人物链接。"
       }
     }
   ]
