@@ -69,7 +69,7 @@ export default function App() {
   const [query, setQuery] = useState(""),
     [type, setType] = useState("全部"),
     [date, setDate] = useState("next7"),
-    [work, setWork] = useState("all"),
+    [work, setWork] = useState<string | null>("all"),
     [city, setCity] = useState("all"),
     [tab, setTab] = useState("discover");
   const [favorites, setFavorites] = useState(initialFavorites),
@@ -135,13 +135,16 @@ export default function App() {
         (type === "全部" || e.type === type) &&
         (city === "all" || e.city === city) &&
         dateMatches(e, date, today, range) &&
-        `${e.title} ${e.venue} ${e.address} ${e.workIds.map((id) => dataset.works.find((w) => w.id === id)?.name).join(" ")}`
+        `${e.title} ${e.venue} ${e.address} ${e.workIds.length ? "" : "综合"} ${e.workIds.map((id) => dataset.works.find((w) => w.id === id)?.name).join(" ")}`
           .toLowerCase()
           .includes(query.toLowerCase().trim()),
     )
     .sort((a, b) => compareEvents(a, b, sort));
   const filtered = matchingEvents.filter(
-    (e) => tab === "works" || work === "all" || e.workIds.includes(work),
+    (e) =>
+      tab === "works" ||
+      work === "all" ||
+      (work === null ? e.workIds.length === 0 : e.workIds.includes(work)),
   );
   const visibleWorks = dataset.works
     .map((w) => ({
@@ -149,7 +152,12 @@ export default function App() {
       count: matchingEvents.filter((e) => e.workIds.includes(w.id)).length,
     }))
     .filter((w) => w.count > 0);
-  const activeWork = dataset.works.find((w) => w.id === work);
+  const generalCount = matchingEvents.filter(
+    (e) => e.workIds.length === 0,
+  ).length;
+  const workCount = visibleWorks.length + (generalCount > 0 ? 1 : 0);
+  const activeWork =
+    work === null ? { name: "综合" } : dataset.works.find((w) => w.id === work);
   const clear = () => {
     setQuery("");
     setType("全部");
@@ -384,7 +392,7 @@ export default function App() {
                   ? "想去清单"
                   : "发现活动"}{" "}
               <b>
-                {(tab === "works" ? visibleWorks.length : filtered.length)
+                {(tab === "works" ? workCount : filtered.length)
                   .toString()
                   .padStart(2, "0")}
               </b>
@@ -450,7 +458,25 @@ export default function App() {
                     <ArrowRight size={15} />
                   </button>
                 ))}
-                {visibleWorks.length === 0 && (
+                {generalCount > 0 && (
+                  <button
+                    className="work-card"
+                    onClick={() => {
+                      setWork(null);
+                      setTab("discover");
+                    }}
+                  >
+                    <span className="work-cover">
+                      <Library size={22} />
+                    </span>
+                    <span className="work-info">
+                      <strong>综合</strong>
+                      <small>{generalCount} 场活动</small>
+                    </span>
+                    <ArrowRight size={15} />
+                  </button>
+                )}
+                {workCount === 0 && (
                   <div className="empty">
                     <p>暂无匹配的条目</p>
                     <button onClick={clear}>清除筛选</button>
@@ -490,7 +516,10 @@ export default function App() {
                     <div className="card-content">
                       <div className="card-kicker">
                         <span className="pink-dot" />
-                        {dataset.works.find((w) => w.id === e.workIds[0])?.name}
+                        {e.workIds.length
+                          ? dataset.works.find((w) => w.id === e.workIds[0])
+                              ?.name
+                          : "综合"}
                       </div>
                       <h2>{e.title}</h2>
                       <p>
@@ -601,6 +630,9 @@ export default function App() {
               </div>
               <h2>{event.title}</h2>
               <div className="work-links">
+                {event.workIds.length === 0 && (
+                  <span className="general-label">综合</span>
+                )}
                 {event.workIds.map((id) => {
                   const w = dataset.works.find((w) => w.id === id)!;
                   return (

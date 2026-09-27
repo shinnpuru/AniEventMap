@@ -15,6 +15,15 @@ import {
 } from "./data";
 const e = dataset.events[0];
 describe("活动数据与日期", () => {
+  it("综合活动允许省略关联或填空数组，保留已有关联", () => {
+    const { workIds, ...unlinked } = e;
+    expect(eventSchema.parse(unlinked).workIds).toEqual([]);
+    expect(eventSchema.parse({ ...unlinked, workIds: [] }).workIds).toEqual([]);
+    expect(eventSchema.parse(e).workIds).toEqual(workIds);
+    expect(eventSchema.safeParse({ ...unlinked, workIds: null }).success).toBe(
+      false,
+    );
+  });
   it("Bangumi 兼容旧作品，并区分同号作品、角色和人物", () => {
     const { bangumiType, ...legacy } = dataset.works[0];
     expect(workSchema.parse(legacy).bangumiType).toBe("subject");

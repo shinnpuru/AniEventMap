@@ -11,7 +11,7 @@ export const eventSchema = z
   .object({
     id: z.string(),
     title: z.string().min(1),
-    workIds: z.array(z.string()).min(1),
+    workIds: z.array(z.string()).default([]),
     type: z.enum(["展览", "快闪", "演出", "同人Only"]),
     country: z.string().trim().min(1).default("中国"),
     province: z.string().trim().min(1).default("上海"),
