@@ -107,6 +107,14 @@
       "bangumiId": 10452,
       "color": "#39c5bb",
       "cover": "https://lain.bgm.tv/r/100/pic/crt/l/00/71/10452_crt_UusO7.jpg"
+    },
+    {
+      "id": "love-live",
+      "name": "Love Live!",
+      "originalName": "ラブライブ!",
+      "bangumiId": 49294,
+      "color": "#f8a8c8",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/75/74/49294_ISOI2.jpg"
     }
   ],
   "events": [
@@ -855,6 +863,47 @@
       "source": {
         "name": "上海申漫（微信公众号）",
         "url": "https://mp.weixin.qq.com/s/Uajx73A8cKIVFKYuD3QanQ",
+        "verifiedAt": "2026-09-27"
+      }
+    },
+    {
+      "id": "marchmonster-sh-dazuicheng-lovelive-cafe",
+      "title": "Love Live! × 三月兽CAFE 主题活动 上海大悦城店",
+      "workIds": [
+        "love-live"
+      ],
+      "type": "快闪",
+      "country": "中国",
+      "province": "上海",
+      "city": "上海",
+      "district": "静安区",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-31",
+      "hours": "",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "三月兽上海大悦城店",
+      "floor": "南座4楼",
+      "address": "上海市静安区西藏北路166号静安大悦城南座",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.467506,
+        "lat": 31.2459874
+      },
+      "price": 0,
+      "reservation": false,
+      "priceNote": "",
+      "poster": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/jhTIYWkHYQnsibWnTk40w9swibVHx0MkvO4ws4ibEic2S8zSfZpUfukQK0UpV8XHz9a0Rmm2VFibbO7j79OEr5nyribyrz2iaDBUPPib0PvyAh6fNKY/0?wx_fmt=jpeg",
+      "banner": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/jhTIYWkHYQnsibWnTk40w9swibVHx0MkvO4ws4ibEic2S8zSfZpUfukQK0UpV8XHz9a0Rmm2VFibbO7j79OEr5nyribyrz2iaDBUPPib0PvyAh6fNKY/0?wx_fmt=jpeg",
+      "posterAlt": "Love Live! × 三月兽CAFE 主题活动主视觉",
+      "description": "Love Live! × 三月兽CAFE 全新主题活动，μ's 九位成员复古装束登场，含主题饮品、限定特典及周边商品。",
+      "highlights": [],
+      "notes": [
+        "免费入场；主题饮品、限定特典及周边按店内消费结算。特典数量有限，送完即止。"
+      ],
+      "source": {
+        "name": "三月兽MARCHMONSTER（微信公众号）",
+        "url": "https://mp.weixin.qq.com/s/NtkVtqRQ7nOazVKu-bQPlA",
         "verifiedAt": "2026-09-27"
       }
     }
