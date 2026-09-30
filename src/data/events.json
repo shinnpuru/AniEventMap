@@ -720,9 +720,9 @@
       "floor": "8楼",
       "address": "上海市静安区西藏北路198号大悦城北座8楼N809-1",
       "coordinates": {
-        "system": "GCJ-02",
-        "lng": 121.472061,
-        "lat": 31.244157
+        "system": "WGS84",
+        "lng": 121.467506,
+        "lat": 31.2459874
       },
       "price": 30,
       "priceNote": "",
