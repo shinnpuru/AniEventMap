@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-05",
   "works": [
     {
       "id": "madoka-magica",
@@ -123,6 +123,14 @@
       "bangumiId": 385208,
       "color": "#4a90c2",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/2e/ef/385208_shW2q.jpg"
+    },
+    {
+      "id": "nte",
+      "name": "异环",
+      "originalName": "异环",
+      "bangumiId": 503983,
+      "color": "#2f6fd0",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e7/1f/503983_6TzsC.jpg"
     }
   ],
   "events": [
@@ -955,6 +963,52 @@
         "url": "https://mp.weixin.qq.com/s/FEN3fs3Rc_d_jkTJ8d9rhQ",
         "verifiedAt": "2026-09-30"
       }
+    },
+    {
+      "id": "lawson-nte-globalharbor-2026",
+      "title": "《异环》× 罗森 联动主题店 · 上海环球港",
+      "workIds": [
+        "nte"
+      ],
+      "type": "快闪",
+      "country": "中国",
+      "province": "上海",
+      "city": "上海",
+      "district": "普陀区",
+      "startDate": "2026-10-05",
+      "endDate": "2026-11-01",
+      "hours": "",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "罗森IP购旗舰店（上海环球港）",
+      "floor": "B2 X118 A10",
+      "address": "上海市普陀区中山北路3300号环球港 B2 X118 A10",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.4084282,
+        "lat": 31.2361198
+      },
+      "price": 0,
+      "priceNote": "",
+      "description": "《异环》× 罗森（LAWSON）联动主题店，上海点位为环球港 B2 的罗森IP购旗舰店；联动覆盖线上周边、线下主题店、集点与满赠等玩法。",
+      "highlights": [
+        "联动主题店",
+        "限定周边",
+        "集点兑换"
+      ],
+      "notes": [
+        "联动主题档期 2026-10-05 至 2026-11-01；主题店自 10 月 5 日起陆续开启。",
+        "免费入场：到店打卡无需门票，周边与集点为消费活动。"
+      ],
+      "source": {
+        "name": "异环微信公众号",
+        "url": "https://mp.weixin.qq.com/s/HhfQm-jnUEhyMh88XQC4XA",
+        "verifiedAt": "2026-10-05",
+        "evidence": "微信公众号「异环」公告确认联动期为 2026-10-05 至 2026-11-01，并在公告长图「全国主题店一览」中列明「罗森IP购旗舰店」地址为「上海市普陀区中山北路3300号环球港 B2 X118 A10」。坐标为 OpenStreetMap「环球港购物中心」（中山北路3300号，WGS84）查询结果，未做二次转换。"
+      },
+      "poster": "https://map.shinnpuru.site/images/events/lawson-nte-globalharbor-poster.jpg",
+      "posterAlt": "《异环》× 罗森 联动主题店（上海环球港）海报",
+      "banner": "https://map.shinnpuru.site/images/events/lawson-nte-globalharbor-banner.jpg"
     }
   ]
 }
