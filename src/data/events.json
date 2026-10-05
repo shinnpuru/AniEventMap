@@ -1009,6 +1009,49 @@
       "poster": "https://map.shinnpuru.site/images/events/lawson-nte-globalharbor-poster.jpg",
       "posterAlt": "《异环》× 罗森 联动主题店（上海环球港）海报",
       "banner": "https://map.shinnpuru.site/images/events/lawson-nte-globalharbor-banner.jpg"
+    },
+    {
+      "id": "bugsysttem-popup-globalharbor-2026",
+      "title": "BUG SYSTEM POP UP STORE · 上海环球港",
+      "workIds": [],
+      "type": "快闪",
+      "country": "中国",
+      "province": "上海",
+      "city": "上海",
+      "district": "普陀区",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-26",
+      "hours": "",
+      "timezone": "Asia/Shanghai",
+      "status": "scheduled",
+      "venue": "环球港北广场 X118-A12（上海环球港）",
+      "floor": "北广场 X118-A12",
+      "address": "上海市普陀区中山北路3300号环球港 北广场 X118-A12",
+      "coordinates": {
+        "system": "WGS84",
+        "lng": 121.4084282,
+        "lat": 31.2361198
+      },
+      "price": 0,
+      "priceNote": "免费入场",
+      "description": "BUG SYSTEM × 肉包文化 联名快闪店「BUG SYSTEM POP UP STORE」，地点为上海环球港北广场 X118-A12，与同商场的《异环》× 罗森联动主题店（B2 X118 A10）相邻。",
+      "highlights": [
+        "联名快闪",
+        "限定周边"
+      ],
+      "notes": [
+        "活动档期 2026-10-02 至 2026-10-26。",
+        "免费入场：快闪无需门票。"
+      ],
+      "source": {
+        "name": "哔哩哔哩「肉包文化」动态",
+        "url": "https://www.bilibili.com/opus/1241542773180465298",
+        "verifiedAt": "2026-10-05",
+        "evidence": "B 站账号「肉包文化」发布的快闪海报（动态 1241542773180465298）确认活动名 BUG SYSTEM POP UP STORE、档期 2026.10.02(五)-10.26(一)、地址「上海市普陀区环球港北广场 X118-A12」。坐标为同商场经纬度（OpenStreetMap 环球港购物中心，WGS84）。"
+      },
+      "poster": "https://map.shinnpuru.site/images/events/bugsystem-popup-globalharbor-poster.jpg",
+      "posterAlt": "BUG SYSTEM POP UP STORE（上海环球港）海报",
+      "banner": "https://map.shinnpuru.site/images/events/bugsystem-popup-globalharbor-banner.jpg"
     }
   ]
 }
